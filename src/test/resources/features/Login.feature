@@ -1,6 +1,7 @@
 @regression @login
 Feature: Login Page
 
+  @smoke
   Scenario: Login with invalid data
   Given I navigate to LoginPage
   Then Login button is displayed
