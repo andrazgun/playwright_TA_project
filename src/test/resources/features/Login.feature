@@ -1,10 +1,13 @@
-@regression @login
+@smoke @regression @login
 Feature: Login Page
 
-  @smoke
-  Scenario: Login with invalid data
+  Scenario: Login button
   Given I navigate to LoginPage
   Then Login button is displayed
+
+  Scenario: Register button
+    Given I navigate to LoginPage
+    Then Register button is displayed
 
 #  @smoke
 #  Scenario Outline: Validate valid & invalid login credentials

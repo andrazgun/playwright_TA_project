@@ -53,4 +53,9 @@ public class LoginPage_steps {
     public void loginPageIsDisplayed() {
         loginPage.loginBtnIsDisplayed();
     }
+
+    @Then("Register button is displayed")
+    public void registerButtonIsDisplayed() {
+        loginPage.registerBtnIsDisplayed();
+    }
 }
