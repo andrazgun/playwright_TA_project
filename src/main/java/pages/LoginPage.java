@@ -45,6 +45,6 @@ public class LoginPage extends BasePage {
     public void registerBtnIsDisplayed() {
         Locator locator = getBrowserManager().getPage().locator("[name='register']");
         assertThat(locator).isVisible();
-        assertThat(locator).hasText("Înregistrare555");
+        assertThat(locator).hasText("Înregistrare");
     }
 }

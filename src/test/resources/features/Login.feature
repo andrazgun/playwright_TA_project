@@ -1,6 +1,7 @@
-@smoke @regression @login
+@regression @login
 Feature: Login Page
 
+  @smoke
   Scenario: Login button
   Given I navigate to LoginPage
   Then Login button is displayed

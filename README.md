@@ -1,12 +1,7 @@
 # Playwright Java Test Automation Project
 
-This project automates the login functionality of the [SauceDemo](https://www.saucedemo.com/) application using Playwright.
-The tests are executed in parallel, using Cucumber BDD approach and design patterns where applicable.
-
-
 ### Description
-Launch URL: https://www.libris.ro/   
-
+TBU
 
 ---
 
@@ -44,7 +39,7 @@ After executing the test suite, the Cucumber report will be published to GitHub 
 
 ### Disclaimer:
 This project is developed for demonstration and educational purposes only.
-It is not affiliated with or endorsed by https://www.libris.ro/ or any other third party mentioned herein.
+It is not affiliated with or endorsed by any mentioned herein or other third party.
 Use at your own discretion.
 
 ---
