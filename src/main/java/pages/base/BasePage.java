@@ -37,6 +37,7 @@ public class BasePage {
 
     public void navigate(String url) {
         browserManager.getPage().navigate(url);
+//        browserManager.getPage().pause();
     }
 
     public void fillField(String placeholder, String text) {

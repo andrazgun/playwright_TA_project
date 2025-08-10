@@ -9,7 +9,7 @@ public class HomePage extends BasePage {
     }
 
     public void navigateToHomePage() {
-        navigate("https://webdriveruniversity.com/");
+        navigate("https://www.libris.ro/");
     }
 
     public void clickContactUsBtn() {

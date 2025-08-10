@@ -5,6 +5,8 @@ import com.microsoft.playwright.Locator;
 import pages.base.BasePage;
 import session.SessionKeys;
 
+import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
+
 public class LoginPage extends BasePage {
     public LoginPage(BrowserManager browserManager) {
         super(browserManager);
@@ -28,5 +30,15 @@ public class LoginPage extends BasePage {
         waitAndClick(loginButton);
 
 
+    }
+
+    public void navigateToLoginPage() {
+        navigate("https://www.brandcomputers.ro/contul-meu/");
+    }
+
+    public void loginBtnIsDisplayed() {
+        Locator locator = getBrowserManager().getPage().locator("[name='login']");
+        assertThat(locator).isVisible();
+        assertThat(locator).hasText("Autentificare");
     }
 }

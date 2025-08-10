@@ -1,6 +1,7 @@
 package step_definitions;
 
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
@@ -14,6 +15,11 @@ public class LoginPage_steps {
 
     public LoginPage_steps(LoginPage loginPage) {
         this.loginPage = loginPage;
+    }
+
+    @Given("I navigate to LoginPage")
+    public void iNavigateToLoginPage() {
+        loginPage.navigateToLoginPage();
     }
 
     @When("I type a user name {string}")
@@ -41,5 +47,10 @@ public class LoginPage_steps {
     public void iShouldBePresentedWithAnAlertBoxWhichContainsTextExpectedAlertText(String expectedAlertText) {
         String alertText = scenarioSession.get(SessionKeys.ALERT_TEXT, String.class);
         Assert.assertEquals(alertText, expectedAlertText, "Text doesn't match");
+    }
+
+    @Then("Login button is displayed")
+    public void loginPageIsDisplayed() {
+        loginPage.loginBtnIsDisplayed();
     }
 }

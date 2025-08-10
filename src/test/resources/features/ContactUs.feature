@@ -2,7 +2,7 @@
 #Feature: WebdriverUniversity.com - Contact Us Page
 #
 #  Background: Pre Conditions
-#    Given I navigate to the webdriveruniversity homepage
+#    Given I navigate to HomePage
 #    When I click on the contact us button
 #
 #  @ignore

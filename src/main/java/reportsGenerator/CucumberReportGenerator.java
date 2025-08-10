@@ -14,7 +14,7 @@ public class CucumberReportGenerator {
         File reportOutputDirectory = new File("target/");
         List<String> jsonFiles = Collections.singletonList("target/cucumber.json");
 
-        Configuration config = new Configuration(reportOutputDirectory, "playwright-bruno");
+        Configuration config = new Configuration(reportOutputDirectory, "playwright_TA_project");
         ReportBuilder reportBuilder = new ReportBuilder(jsonFiles, config);
         reportBuilder.generateReports();
     }

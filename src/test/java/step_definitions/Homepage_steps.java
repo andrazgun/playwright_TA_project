@@ -11,8 +11,8 @@ public class Homepage_steps {
         this.homePage = homePage;
     }
 
-    @Given("I navigate to the webdriveruniversity homepage")
-    public void iNavigateToTheWebdriverUniversityHomepage() {
+    @Given("I navigate to HomePage")
+    public void iNavigateToHomePage() {
         homePage.navigateToHomePage();
     }
 
