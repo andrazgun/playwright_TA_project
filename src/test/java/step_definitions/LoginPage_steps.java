@@ -54,9 +54,4 @@ public class LoginPage_steps {
     public void loginPageIsDisplayed() {
         assertThat(loginPage.isLoginBtnDisplayed()).isTrue();
     }
-
-    @Then("Register button is displayed")
-    public void registerButtonIsDisplayed() {
-        loginPage.registerBtnIsDisplayed();
-    }
 }
