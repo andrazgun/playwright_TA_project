@@ -30,12 +30,11 @@ The view the test report, go to target\cucumber-reports.html, right click > Open
 
 CI/CD:
 The framework is designed for integration with Jenkins and Github Actions:
-Jenkins:
-As prerequisite, Jenkins installed locally, Cucumber reports plugin installed, admin credentials.
+Jenkins Prerequisite: Jenkins installed locally, Cucumber reports plugin installed, admin credentials.
 Create a build job with parameters to run tests and generate a report using Execute Windows batch command:
 mvn clean test -Dcucumber.filter.tags="(@%TAG% and (not @ignore))" -Ddataproviderthreadcount=%THREAD_COUNT% -DBROWSER=%BROWSER% -Dbranch.name=${BRANCH_NAME}
-Github Actions:
-Each push or PR to master branch on Github will trigger a job executing the @smoke tests suite, on 2 threads, using Chromium.
+GitHub Actions:
+Each push or PR to master branch on GitHub will trigger a job executing the @smoke tests suite, on 2 threads, using Chromium.
 After executing the test suite, the Cucumber report will be published to GitHub Pages.
 
 ### Disclaimer:
@@ -46,8 +45,8 @@ Use at your own discretion.
 ---
 
 - Author: Andrei Gunta
-- Java version: 17.0.5
-- Maven 3.9.6
+- Java version: 21.0.8
+- Maven 3.9.11
 
 
 
