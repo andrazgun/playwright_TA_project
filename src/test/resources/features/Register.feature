@@ -5,11 +5,10 @@ Feature: Register Page
     Given I navigate to RegisterPage
 
   @smoke
-  Scenario: Valid Contact Us Form Submission
+  Scenario: Valid Registration Form Submission
     When I fill the registration form
     And I click Register button
-    Then Message "Your account was created successfully. You are now logged in." is displayed
-#    Then Message "555An internal error has occurred and has been logged." is displayed
+    Then Message "Thank you for registering with Main Website Store." is displayed on AccountPage
 #
 #  Scenario: Invalid Contact Us Form Submission
 #    When I type a last name

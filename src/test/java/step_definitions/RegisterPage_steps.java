@@ -32,7 +32,7 @@ public class RegisterPage_steps {
         registerPage.submitRegistration();
     }
 
-    @Then("Message {string} is displayed")
+    @Then("Message {string} is displayed on LoginPage")
     public void messageIsDisplayed(String message) {
         String actualMessage = registerPage.getErrorMessage();
         Assertions.assertThat(actualMessage).contains(message);

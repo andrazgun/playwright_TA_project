@@ -5,19 +5,19 @@ import com.microsoft.playwright.Locator;
 import pages.base.BasePage;
 import session.SessionKeys;
 
-import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
-
 public class LoginPage extends BasePage {
     public LoginPage(BrowserManager browserManager) {
         super(browserManager);
     }
 
-    public void typeUsername(String username) {
-        fillField("Username", username);
+    private Locator loginButton = getBrowserManager().getPage().locator("button.action.login.primary");
+
+    public void typeUsername(String email) {
+        fillField("email", email);
     }
 
     public void typePassword(String password) {
-        fillField("Password", password);
+        fillField("password", password);
     }
 
     public void clickLoginBtn() {
@@ -28,23 +28,13 @@ public class LoginPage extends BasePage {
         });
         Locator loginButton = getBrowserManager().getPage().locator("#login-button");
         waitAndClick(loginButton);
-
-
     }
 
     public void navigate() {
-        navigate("https://www.brandcomputers.ro/contul-meu/");
+        navigate("https://magento.softwaretestingboard.com/customer/account/login/");
     }
 
-    public void loginBtnIsDisplayed() {
-        Locator locator = getBrowserManager().getPage().locator("[name='login']");
-        assertThat(locator).isVisible();
-        assertThat(locator).hasText("Autentificare");
-    }
-
-    public void registerBtnIsDisplayed() {
-        Locator locator = getBrowserManager().getPage().locator("[name='register']");
-        assertThat(locator).isVisible();
-        assertThat(locator).hasText("Înregistrare");
+    public boolean isLoginBtnDisplayed() {
+        return loginButton.isVisible();
     }
 }

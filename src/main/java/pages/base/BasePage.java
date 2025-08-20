@@ -3,6 +3,7 @@ package pages.base;
 import browser.BrowserManager;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import com.microsoft.playwright.TimeoutError;
 import com.microsoft.playwright.options.AriaRole;
 import com.microsoft.playwright.options.WaitForSelectorState;
 import session.ScenarioSession;
@@ -37,10 +38,22 @@ public class BasePage {
 
     public void navigate(String url) {
         browserManager.getPage().navigate(url);
+        acceptConsentPopup();
 //        browserManager.getPage().pause();
     }
 
     public void fillField(String placeholder, String text) {
         getBrowserManager().getPage().getByPlaceholder(placeholder).fill(text);
+    }
+
+    private void acceptConsentPopup() {
+        try {
+            if (getBrowserManager().getPage().isVisible("button.fc-cta-consent")) {
+                getBrowserManager().getPage().click("button.fc-cta-consent");
+                System.out.println("✅ Consent popup accepted.");
+            }
+        } catch (TimeoutError e) {
+            System.out.println("ℹ️ Consent popup not displayed.");
+        }
     }
 }

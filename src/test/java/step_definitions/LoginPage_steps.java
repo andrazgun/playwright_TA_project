@@ -8,6 +8,7 @@ import org.testng.Assert;
 import pages.LoginPage;
 import session.SessionKeys;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static pages.base.BasePage.scenarioSession;
 
 public class LoginPage_steps {
@@ -51,7 +52,7 @@ public class LoginPage_steps {
 
     @Then("Login button is displayed")
     public void loginPageIsDisplayed() {
-        loginPage.loginBtnIsDisplayed();
+        assertThat(loginPage.isLoginBtnDisplayed()).isTrue();
     }
 
     @Then("Register button is displayed")

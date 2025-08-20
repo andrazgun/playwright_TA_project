@@ -1,14 +1,17 @@
 @regression @login
 Feature: Login Page
 
+  Background: Pre Conditions
+    Given I navigate to RegisterPage
+
   @smoke
   Scenario: Login button
   Given I navigate to LoginPage
   Then Login button is displayed
-
-  Scenario: Register button
-    Given I navigate to LoginPage
-    Then Register button is displayed
+#
+#  Scenario: Register button
+#    Given I navigate to LoginPage
+#    Then Register button is displayed
 
 #  @smoke
 #  Scenario Outline: Validate valid & invalid login credentials
