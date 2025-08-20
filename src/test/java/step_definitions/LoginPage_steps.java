@@ -19,7 +19,7 @@ public class LoginPage_steps {
 
     @Given("I navigate to LoginPage")
     public void iNavigateToLoginPage() {
-        loginPage.navigateToLoginPage();
+        loginPage.navigate();
     }
 
     @When("I type a user name {string}")

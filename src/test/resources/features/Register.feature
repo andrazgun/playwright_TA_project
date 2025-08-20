@@ -1,18 +1,15 @@
-#@regression @contact-us
-#Feature: WebdriverUniversity.com - Contact Us Page
-#
-#  Background: Pre Conditions
-#    Given I navigate to HomePage
-#    When I click on the contact us button
-#
-#  @ignore
-#  Scenario: Valid Contact Us Form Submission
-#    When I type a first name
-#    And I type a last name
-#    And I enter an email address
-#    And I type a comment
-#    And I click on the submit button
-#    Then I should be presented with a successful contact us submission message
+@regression @register
+Feature: Register Page
+
+  Background: Pre Conditions
+    Given I navigate to RegisterPage
+
+  @smoke
+  Scenario: Valid Contact Us Form Submission
+    When I fill the registration form
+    And I click Register button
+    Then Message "Your account was created successfully. You are now logged in." is displayed
+#    Then Message "555An internal error has occurred and has been logged." is displayed
 #
 #  Scenario: Invalid Contact Us Form Submission
 #    When I type a last name

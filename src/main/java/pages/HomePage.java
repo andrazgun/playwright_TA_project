@@ -9,10 +9,10 @@ public class HomePage extends BasePage {
     }
 
     public void navigateToHomePage() {
-        navigate("https://www.libris.ro/");
+        navigate("https://parabank.parasoft.com/parabank/index.htm");
     }
 
-    public void clickContactUsBtn() {
+    public void clickRegisterBtn() {
         getBrowserManager().setPage(getBrowserManager().getContext().waitForPage(() ->
                 waitAndClickByRole("link", "CONTACT US Contact Us Form")));
 

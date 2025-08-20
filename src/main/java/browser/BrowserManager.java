@@ -62,6 +62,7 @@ public class BrowserManager {
 
         if (playwright.get() == null) {
             playwright.set(Playwright.create());
+            playwright.get().selectors().setTestIdAttribute("id");
         }
 
         launchBrowser();

@@ -28,16 +28,6 @@ public class ContactUs_steps {
         this.contactUsPage = contactUsPage;
     }
 
-    @When("I type a first name")
-    public void iTypeAFirstName() {
-        contactUsPage.typeFirstName("Joe");
-    }
-
-    @And("I type a last name")
-    public void iTypeALastName() {
-        contactUsPage.typeLastName("Doe");
-    }
-
     @When("I enter an email address")
     public void iEnterAnEmailAddress() {
         contactUsPage.typeEmailAddress("agtest1@yopmail.com");

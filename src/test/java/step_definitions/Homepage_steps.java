@@ -16,11 +16,6 @@ public class Homepage_steps {
         homePage.navigateToHomePage();
     }
 
-    @When("I click on the contact us button")
-    public void iClickOnTheContactUsButton() {
-        homePage.clickContactUsBtn();
-    }
-
     @When("I click on the login portal button")
     public void iClickOnTheLoginPortalButton() {
         homePage.clickLoginBtn();

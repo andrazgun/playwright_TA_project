@@ -32,7 +32,7 @@ public class LoginPage extends BasePage {
 
     }
 
-    public void navigateToLoginPage() {
+    public void navigate() {
         navigate("https://www.brandcomputers.ro/contul-meu/");
     }
 
