@@ -19,7 +19,6 @@ public record RandomUser(
         Faker faker = new Faker();
 
         String username = faker.name().maleFirstName() + faker.number().digits(3);
-//        String password = faker.internet().password(8, 12);
         String password = faker.internet().password(
                 8,
                 12,

@@ -12,7 +12,7 @@ public class LoginPage extends BasePage {
 
     private Locator loginButton = getBrowserManager().getPage().locator("button.action.login.primary");
 
-    public void typeUsername(String email) {
+    public void typeEmail(String email) {
         fillField("email", email);
     }
 

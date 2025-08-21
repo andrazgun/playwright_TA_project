@@ -6,16 +6,19 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
 import pages.LoginPage;
+import session.ScenarioSession;
 import session.SessionKeys;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static pages.base.BasePage.scenarioSession;
 
 public class LoginPage_steps {
-    private final LoginPage loginPage;
 
-    public LoginPage_steps(LoginPage loginPage) {
+    private final LoginPage loginPage;
+    private final ScenarioSession scenarioSession;
+
+    public LoginPage_steps(LoginPage loginPage, ScenarioSession scenarioSession) {
         this.loginPage = loginPage;
+        this.scenarioSession = scenarioSession;
     }
 
     @Given("I navigate to LoginPage")
@@ -25,7 +28,7 @@ public class LoginPage_steps {
 
     @When("I type a user name {string}")
     public void iTypeAUserName(String username) {
-        loginPage.typeUsername(username);
+        loginPage.typeEmail(username);
     }
 
     @When("I type a password {string}")
@@ -35,7 +38,7 @@ public class LoginPage_steps {
 
     @When("I type a user name {string} and a password {string}")
     public void iTypeAUserNameUsernameAndAPasswordPassword(String username, String password) {
-        loginPage.typeUsername(username);
+        loginPage.typeEmail(username);
         loginPage.typePassword(password);
     }
 

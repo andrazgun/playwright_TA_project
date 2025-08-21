@@ -8,6 +8,9 @@ import com.microsoft.playwright.options.AriaRole;
 import com.microsoft.playwright.options.WaitForSelectorState;
 import session.ScenarioSession;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BasePage {
     private final BrowserManager browserManager;
     public static ScenarioSession scenarioSession;
@@ -19,6 +22,12 @@ public class BasePage {
 
     protected BrowserManager getBrowserManager() {
         return browserManager;
+    }
+
+    public boolean isDisplayed(String expectedUrl) {
+        String currentUrl = getBrowserManager().getPage().url();
+        return currentUrl.equalsIgnoreCase(expectedUrl);
+//        return currentUrl.contains(expectedUrl);
     }
 
     public void waitAndClickByRole(String role, String name) {
@@ -44,6 +53,15 @@ public class BasePage {
 
     public void fillField(String placeholder, String text) {
         getBrowserManager().getPage().getByPlaceholder(placeholder).fill(text);
+    }
+
+    protected List<String> getLocatorTexts(Locator locator) {
+        int count = locator.count();
+        List<String> texts = new ArrayList<>(count);
+        for (int i = 0; i < count; i++) {
+            texts.add(locator.nth(i).innerText().trim());
+        }
+        return texts;
     }
 
     private void acceptConsentPopup() {

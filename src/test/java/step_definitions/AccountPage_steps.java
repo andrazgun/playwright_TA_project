@@ -1,6 +1,7 @@
 package step_definitions;
 
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.assertj.core.api.Assertions;
 import pages.AccountPage;
 
@@ -10,6 +11,11 @@ public class AccountPage_steps {
 
     public AccountPage_steps(AccountPage accountPage) {
         this.accountPage = accountPage;
+    }
+
+    @When("I click the nav item {string}")
+    public void clickNavItem(String itemText) {
+        accountPage.clickNavItemByText(itemText);
     }
 
     @Then("Message {string} is displayed on AccountPage")
