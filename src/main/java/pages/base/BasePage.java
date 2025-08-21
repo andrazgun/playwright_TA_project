@@ -6,12 +6,16 @@ import com.microsoft.playwright.Page;
 import com.microsoft.playwright.TimeoutError;
 import com.microsoft.playwright.options.AriaRole;
 import com.microsoft.playwright.options.WaitForSelectorState;
+import com.microsoft.playwright.options.WaitUntilState;
 import session.ScenarioSession;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BasePage {
+
+    private static final String CONSENT_BUTTON_SELECTOR = "button.fc-cta-consent";
+
     private final BrowserManager browserManager;
     public static ScenarioSession scenarioSession;
 
@@ -30,6 +34,20 @@ public class BasePage {
 //        return currentUrl.contains(expectedUrl);
     }
 
+    protected Locator getByLocator(String locator) {
+        return getBrowserManager().getPage().locator(locator);
+    }
+
+    protected Locator getByTestId(String testId) {
+        return getBrowserManager().getPage().getByTestId(testId);
+    }
+
+    protected void fillIfNotNull(String value, Locator locator) {
+        if (value != null) {
+            locator.fill(value);
+        }
+    }
+
     public void waitAndClickByRole(String role, String name) {
         Locator element = browserManager.getPage().getByRole(AriaRole.valueOf(role.toUpperCase()), new Page.GetByRoleOptions().setName(name));
         element.click();
@@ -46,7 +64,9 @@ public class BasePage {
     }
 
     public void navigate(String url) {
-        browserManager.getPage().navigate(url);
+//        browserManager.getPage().navigate(url);
+        browserManager.getPage().navigate(url, new Page.NavigateOptions()
+                .setWaitUntil(WaitUntilState.DOMCONTENTLOADED));
         acceptConsentPopup();
 //        browserManager.getPage().pause();
     }
@@ -66,8 +86,9 @@ public class BasePage {
 
     private void acceptConsentPopup() {
         try {
-            if (getBrowserManager().getPage().isVisible("button.fc-cta-consent")) {
-                getBrowserManager().getPage().click("button.fc-cta-consent");
+            Locator consentButtonLocator = getByLocator(CONSENT_BUTTON_SELECTOR);
+            if (consentButtonLocator.isVisible()) {
+                consentButtonLocator.click();
                 System.out.println("✅ Consent popup accepted.");
             }
         } catch (TimeoutError e) {

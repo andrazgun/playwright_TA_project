@@ -19,13 +19,14 @@ public class RegisterPage extends BasePage {
     private final RandomUser user = RandomUser.createRandom();
     CustomerDto customerDto = UserMapper.toDto(user);
 
-    private final Locator firstNameField = getBrowserManager().getPage().getByTestId("firstname");
-    private final Locator lastNameField = getBrowserManager().getPage().getByTestId("lastname");
-    private final Locator emailField = getBrowserManager().getPage().getByTestId("email_address");
-    private final Locator passwordField = getBrowserManager().getPage().getByTestId("password");
-    private final Locator confirmPasswordField = getBrowserManager().getPage().getByTestId("password-confirmation");
-    private final Locator registerButton = getBrowserManager().getPage().locator("button[title='Create an Account']");
-    private final Locator errorText = getBrowserManager().getPage().locator("#rightPanel");
+    // Lazy locators using helper method
+    private Locator firstNameField() { return getByTestId("firstname"); }
+    private Locator lastNameField() { return getByTestId("lastname"); }
+    private Locator emailField() { return getByTestId("email_address"); }
+    private Locator passwordField() { return getByTestId("password"); }
+    private Locator confirmPasswordField() { return getByTestId("password-confirmation");}
+    private Locator registerButton(){ return getByLocator("button[title='Create an Account']");}
+    private Locator errorText() {return getByLocator("#rightPanel");}
 
     public void navigate() {
         navigate("https://magento.softwaretestingboard.com/customer/account/create/");
@@ -34,11 +35,11 @@ public class RegisterPage extends BasePage {
     public void fillRegistrationForm() {
         scenarioSession.put(SessionKeys.CUSTOMER_DTO, customerDto);
 
-        enterNotNullValue(customerDto.getFirstName(), firstNameField::fill);
-        enterNotNullValue(customerDto.getLastName(), lastNameField::fill);
-        enterNotNullValue(customerDto.getEmail(), emailField::fill);
-        enterNotNullValue(customerDto.getPassword(), passwordField::fill);
-        enterNotNullValue(customerDto.getPassword(), confirmPasswordField::fill); // confirm
+        fillIfNotNull(customerDto.getFirstName(), firstNameField());
+        fillIfNotNull(customerDto.getLastName(), lastNameField());
+        fillIfNotNull(customerDto.getEmail(), emailField());
+        fillIfNotNull(customerDto.getPassword(), passwordField());
+        fillIfNotNull(customerDto.getPassword(), confirmPasswordField());
     }
 
     private void enterNotNullValue(String field, Consumer<String> consumer) {
@@ -46,12 +47,12 @@ public class RegisterPage extends BasePage {
     }
 
     public void submitRegistration() {
-        registerButton.click();
+        registerButton().click();
     }
 
     public String getErrorMessage() {
 //        getBrowserManager().getPage().pause();
-        return errorText.innerText();
+        return errorText().innerText();
     }
 
     public void registerNewAccount() {

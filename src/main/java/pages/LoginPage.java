@@ -6,11 +6,12 @@ import pages.base.BasePage;
 import session.SessionKeys;
 
 public class LoginPage extends BasePage {
+
+    private final Locator loginButton = getByLocator("button.action.login.primary");
+
     public LoginPage(BrowserManager browserManager) {
         super(browserManager);
     }
-
-    private Locator loginButton = getBrowserManager().getPage().locator("button.action.login.primary");
 
     public void typeEmail(String email) {
         fillField("email", email);

@@ -11,7 +11,8 @@ public class AccountPage extends BasePage {
         super(browserManager);
     }
 
-    private Locator successMessage = getBrowserManager().getPage().locator(".message-success");
+    private final Locator successMessage = getByLocator(".message-success");
+    private final Locator navItems = getByLocator("li.nav.item a");
 //    private List<Locator> navItems = getBrowserManager().getPage().locator("li.nav.item a");
 
     public String getSuccessMessage() {
@@ -20,14 +21,14 @@ public class AccountPage extends BasePage {
     }
 
     public List<String> getNavItemsText() {
-        return getLocatorTexts(navItems());
+        return getLocatorTexts(navItems);
     }
 
     public void clickNavItemByText(String itemText) {
-        navItems().filter(new Locator.FilterOptions().setHasText(itemText)).click();
+        navItems.filter(new Locator.FilterOptions().setHasText(itemText)).click();
     }
 
-    private Locator navItems() {
-        return getBrowserManager().getPage().locator("li.nav.item a");
-    }
+//    private Locator navItems() {
+//        return getBrowserManager().getPage().locator("li.nav.item a");
+//    }
 }
