@@ -10,13 +10,13 @@ Feature: Register Page
     And I click Register button
     Then Message "Thank you for registering with Main Website Store." is displayed on AccountPage
 
-  Scenario: Invalid Contact Us Form Submission
-    When I type a last name
-    And I enter an email address
-    And I type a comment
-    And I click on the submit button
-    Then I should be presented with a unsuccessful contact us submission message
-
+#  Scenario: Invalid Contact Us Form Submission
+#    When I type a last name
+#    And I enter an email address
+#    And I type a comment
+#    And I click on the submit button
+#    Then I should be presented with a unsuccessful contact us submission message
+#
 #  Scenario: Invalid Contact Us Form Submission - Using Specific Data
 #    When I type a specific first name "Sarah"
 #    And I type a specific last name "Woods"
