@@ -7,7 +7,9 @@ import session.SessionKeys;
 
 public class LoginPage extends BasePage {
 
-    private final Locator loginButton = getByLocator("button.action.login.primary");
+    private Locator loginButton() {
+        return getByLocator("button.action.login.primary");
+    }
 
     public LoginPage(BrowserManager browserManager) {
         super(browserManager);
@@ -36,6 +38,6 @@ public class LoginPage extends BasePage {
     }
 
     public boolean isLoginBtnDisplayed() {
-        return loginButton.isVisible();
+        return loginButton().isVisible();
     }
 }

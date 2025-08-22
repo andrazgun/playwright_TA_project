@@ -15,9 +15,8 @@ import java.util.List;
 public class BasePage {
 
     private static final String CONSENT_BUTTON_SELECTOR = "button.fc-cta-consent";
-
-    private final BrowserManager browserManager;
     public static ScenarioSession scenarioSession;
+    private final BrowserManager browserManager;
 
     public BasePage(BrowserManager browserManager) {
         this.browserManager = browserManager;
