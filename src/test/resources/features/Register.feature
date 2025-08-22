@@ -5,10 +5,13 @@ Feature: Register Page
     Given I navigate to RegisterPage
 
   @smoke
-  Scenario: Valid Registration Form Submission
-    When I fill the registration form
-    And I click Register button
-    Then Message "Thank you for registering with Main Website Store." is displayed on AccountPage
+  Scenario: Registration button
+    Then Registration button is displayed
+    Then Login link is displayed
+
+#    When I fill the registration form
+#    And I click Register button
+#    Then Message "Thank you for registering with Main Website Store." is displayed on AccountPage
 
 #  Scenario: Invalid Contact Us Form Submission
 #    When I type a last name

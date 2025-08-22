@@ -7,16 +7,19 @@ import com.microsoft.playwright.TimeoutError;
 import com.microsoft.playwright.options.AriaRole;
 import com.microsoft.playwright.options.WaitForSelectorState;
 import com.microsoft.playwright.options.WaitUntilState;
+import pages.PageInterface;
 import session.ScenarioSession;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BasePage {
+import static support.Constants.BASE_URL;
+
+public class BasePage implements PageInterface {
 
     private static final String CONSENT_BUTTON_SELECTOR = "button.fc-cta-consent";
-    public static ScenarioSession scenarioSession;
     private final BrowserManager browserManager;
+    public static ScenarioSession scenarioSession;
 
     public BasePage(BrowserManager browserManager) {
         this.browserManager = browserManager;
@@ -35,6 +38,20 @@ public class BasePage {
 
     protected Locator getByLocator(String locator) {
         return getBrowserManager().getPage().locator(locator);
+    }
+
+    protected Locator getByText(String locator) {
+        return getBrowserManager().getPage().getByText(locator);
+    }
+
+    protected Locator getButtonByName(String name) {
+        return getBrowserManager().getPage().getByRole(AriaRole.BUTTON,
+                new Page.GetByRoleOptions().setName(name));
+    }
+
+    protected Locator getLinkByName(String name) {
+        return getBrowserManager().getPage().getByRole(AriaRole.LINK,
+                new Page.GetByRoleOptions().setName(name));
     }
 
     protected Locator getByTestId(String testId) {
@@ -62,9 +79,8 @@ public class BasePage {
         locator.click();
     }
 
-    public void navigate(String url) {
-//        browserManager.getPage().navigate(url);
-        browserManager.getPage().navigate(url, new Page.NavigateOptions()
+    public void navigate(String path) {
+        browserManager.getPage().navigate(BASE_URL + path, new Page.NavigateOptions()
                 .setWaitUntil(WaitUntilState.DOMCONTENTLOADED));
         acceptConsentPopup();
     }
@@ -84,13 +100,16 @@ public class BasePage {
 
     private void acceptConsentPopup() {
         try {
-            Locator consentButtonLocator = getByLocator(CONSENT_BUTTON_SELECTOR);
+            Locator consentButtonLocator = getButtonByName("Închide dialogul");
+
             if (consentButtonLocator.isVisible()) {
                 consentButtonLocator.click();
                 System.out.println("✅ Consent popup accepted.");
             }
         } catch (TimeoutError e) {
             System.out.println("ℹ️ Consent popup not displayed.");
+        } catch (Exception e) {
+            System.out.println("⚠️ Error interacting with consent popup: " + e.getMessage());
         }
     }
 }

@@ -8,6 +8,8 @@ import mapper.UserMapper;
 import pages.base.BasePage;
 import session.SessionKeys;
 
+import static support.Constants.REGISTRATION_PATH;
+
 public class RegisterPage extends BasePage {
     public RegisterPage(BrowserManager browserManager) {
         super(browserManager);
@@ -16,26 +18,56 @@ public class RegisterPage extends BasePage {
     private final RandomUser user = RandomUser.createRandom();
     CustomerDto customerDto = UserMapper.toDto(user);
 
-    private Locator firstNameField() { return getByTestId("firstname"); }
-    private Locator lastNameField() { return getByTestId("lastname"); }
-    private Locator emailField() { return getByTestId("email_address"); }
-    private Locator passwordField() { return getByTestId("password"); }
-    private Locator confirmPasswordField() { return getByTestId("password-confirmation");}
-    private Locator registerButton(){ return getByLocator("button[title='Create an Account']");}
-    private Locator errorText() {return getByLocator("#rightPanel");}
+    private Locator firstNameField() {
+        return getByTestId("");
+    }
 
-    public void navigate() {
-        navigate("https://magento.softwaretestingboard.com/customer/account/create/");
+    private Locator lastNameField() {
+        return getByTestId("");
+    }
+
+    private Locator usernameField() {
+        return getByTestId("reg_username");
+    }
+
+    private Locator emailField() {
+        return getByTestId("reg_email");
+    }
+
+    private Locator passwordField() {
+        return getByTestId("reg_password");
+    }
+
+    private Locator confirmPasswordField() {
+        return getByTestId("");
+    }
+
+    private Locator registerButton() {
+        return getByLocator("button[name='register']");
+    }
+
+    private Locator errorText() {
+        return getByLocator("#rightPanel");
+    }
+
+    private Locator registerBtn() {
+        return getButtonByName("Înregistrare");
+    }
+
+    private Locator loginLink() {
+        return getLinkByName("Autentificare");
+    }
+
+    public void navigateToRegistrationPage() {
+        navigate(REGISTRATION_PATH);
     }
 
     public void fillRegistrationForm() {
         scenarioSession.put(SessionKeys.CUSTOMER_DTO, customerDto);
 
-        fillIfNotNull(customerDto.getFirstName(), firstNameField());
-        fillIfNotNull(customerDto.getLastName(), lastNameField());
+        fillIfNotNull(customerDto.getUsername(), usernameField());
         fillIfNotNull(customerDto.getEmail(), emailField());
         fillIfNotNull(customerDto.getPassword(), passwordField());
-        fillIfNotNull(customerDto.getPassword(), confirmPasswordField());
     }
 
     public void submitRegistration() {
@@ -47,8 +79,16 @@ public class RegisterPage extends BasePage {
     }
 
     public void registerNewAccount() {
-        navigate();
+        navigateToRegistrationPage();
         fillRegistrationForm();
         submitRegistration();
+    }
+
+    public boolean registerBtnIsDisplayed() {
+        return registerBtn().isVisible();
+    }
+
+    public boolean isLoginLinkDisplayed() {
+        return loginLink().isVisible();
     }
 }
