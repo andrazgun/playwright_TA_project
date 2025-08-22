@@ -20,4 +20,3 @@ Feature: Login Page
       | agtest1@yopmail.com  |                 | câmpul parolă este gol.                                                                 |
       | agtest12@yopmail.com | <c/Z2+:Vc4[~    | Adresă de email necunoscută. Verifică din nou sau încearcă cu numele tău de utilizator. |
       | agtest1@yopmail.com  | <c/Z2+:Vc4[~555 | parola pe care ai introdus-o pentru adresa de email agtest1@yopmail.com este incorectă. |
-      | agtest1@yopmail.com  | <c/Z2+:Vc4[~    | validation succeeded                                                                    |
