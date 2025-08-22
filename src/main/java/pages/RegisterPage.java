@@ -8,9 +8,6 @@ import mapper.UserMapper;
 import pages.base.BasePage;
 import session.SessionKeys;
 
-import java.util.Optional;
-import java.util.function.Consumer;
-
 public class RegisterPage extends BasePage {
     public RegisterPage(BrowserManager browserManager) {
         super(browserManager);
@@ -19,7 +16,6 @@ public class RegisterPage extends BasePage {
     private final RandomUser user = RandomUser.createRandom();
     CustomerDto customerDto = UserMapper.toDto(user);
 
-    // Lazy locators using helper method
     private Locator firstNameField() { return getByTestId("firstname"); }
     private Locator lastNameField() { return getByTestId("lastname"); }
     private Locator emailField() { return getByTestId("email_address"); }
@@ -42,16 +38,11 @@ public class RegisterPage extends BasePage {
         fillIfNotNull(customerDto.getPassword(), confirmPasswordField());
     }
 
-    private void enterNotNullValue(String field, Consumer<String> consumer) {
-        Optional.ofNullable(field).ifPresent(consumer);
-    }
-
     public void submitRegistration() {
         registerButton().click();
     }
 
     public String getErrorMessage() {
-//        getBrowserManager().getPage().pause();
         return errorText().innerText();
     }
 

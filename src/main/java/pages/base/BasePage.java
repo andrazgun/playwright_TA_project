@@ -68,7 +68,6 @@ public class BasePage {
         browserManager.getPage().navigate(url, new Page.NavigateOptions()
                 .setWaitUntil(WaitUntilState.DOMCONTENTLOADED));
         acceptConsentPopup();
-//        browserManager.getPage().pause();
     }
 
     public void fillField(String placeholder, String text) {

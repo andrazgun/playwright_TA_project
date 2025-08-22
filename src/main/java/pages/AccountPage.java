@@ -27,8 +27,4 @@ public class AccountPage extends BasePage {
     public void clickNavItemByText(String itemText) {
         navItems.filter(new Locator.FilterOptions().setHasText(itemText)).click();
     }
-
-//    private Locator navItems() {
-//        return getBrowserManager().getPage().locator("li.nav.item a");
-//    }
 }
