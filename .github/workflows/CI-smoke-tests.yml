@@ -5,10 +5,12 @@ on:
     branches:
       - master
       - hp
+      - mac
   pull_request:
     branches:
       - master
       - hp
+      - mac
 
 env:
   TAG: "@smoke"        # default tag filter
