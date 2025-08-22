@@ -23,8 +23,6 @@ public class HomePage extends BasePage {
 
     public void clickLoginBtn() {
         getBrowserManager().setPage(getBrowserManager().getContext().waitForPage(() ->
-                waitAndClickByRole("link", "LOGIN PORTAL Login Portal")));
-
-        getBrowserManager().getPage().bringToFront(); //point to new opened tab
+                waitAndClickByRole("button", "Logare")));
     }
 }

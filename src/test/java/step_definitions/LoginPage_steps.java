@@ -26,7 +26,7 @@ public class LoginPage_steps {
 
     @When("I type a user name {string}")
     public void iTypeAUserName(String username) {
-        loginPage.typeEmail(username);
+        loginPage.typeUsername(username);
     }
 
     @When("I type a password {string}")
@@ -36,7 +36,7 @@ public class LoginPage_steps {
 
     @When("I type a user name {string} and a password {string}")
     public void iTypeAUserNameUsernameAndAPasswordPassword(String username, String password) {
-        loginPage.typeEmail(username);
+        loginPage.typeUsername(username);
         loginPage.typePassword(password);
     }
 
@@ -53,5 +53,16 @@ public class LoginPage_steps {
     @Then("Register link is displayed")
     public void registerButtonIsDisplayed() {
         assertThat(loginPage.isRegisterLinkDisplayed()).isTrue();
+    }
+
+    @Then("Error message with text {string} is displayed")
+    public void errorMessageWithTextTextIsDisplayed(String expectedText) {
+        assertThat(loginPage.getErrorMessage()).as("Wrong error message")
+                .containsIgnoringCase(expectedText);
+    }
+
+    @When("I log in")
+    public void iLogIn() {
+        loginPage.logIn();
     }
 }

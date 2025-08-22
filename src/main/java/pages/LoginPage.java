@@ -4,32 +4,42 @@ import browser.BrowserManager;
 import com.microsoft.playwright.Locator;
 import pages.base.BasePage;
 
-import static support.Constants.LOGIN_PATH;
+import static support.Constants.*;
 
 public class LoginPage extends BasePage {
 
+    private Locator usernameField() {
+        return getByTestId("username");
+    }
+
+    private Locator passwordField() {
+        return getByTestId("password");
+    }
+
     private Locator loginButton() {
-        return getButtonByName("Logare");
+//        return getButtonByName("Logare");
+        return getByRole("button", "Logare");
     }
 
     private Locator registrationLink() {
-        return getLinkByName("Înregistrare");
+//        return getLinkByName("Înregistrare");
+        return getByRole("link", "Înregistrare");
     }
 
     public LoginPage(BrowserManager browserManager) {
         super(browserManager);
     }
 
-    public void typeEmail(String email) {
-        fillField("email", email);
+    public void typeUsername(String username) {
+        usernameField().fill(username);
     }
 
     public void typePassword(String password) {
-        fillField("password", password);
+        passwordField().fill(password);
     }
 
     public void clickLoginBtn() {
-        waitAndClick(loginButton());
+        loginButton().click();
     }
 
     public void navigateToLoginPage() {
@@ -42,5 +52,15 @@ public class LoginPage extends BasePage {
 
     public boolean isRegisterLinkDisplayed() {
         return registrationLink().isVisible();
+    }
+
+    public String getErrorMessage() {
+        return getAlertText();
+    }
+
+    public void logIn() {
+        typeUsername(LOGIN_EMAIL);
+        typePassword(LOGIN_PASSWORD);
+        clickLoginBtn();
     }
 }
