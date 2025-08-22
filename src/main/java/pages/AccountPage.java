@@ -11,12 +11,16 @@ public class AccountPage extends BasePage {
         super(browserManager);
     }
 
-    private Locator successMessage = getBrowserManager().getPage().locator(".message-success");
-//    private List<Locator> navItems = getBrowserManager().getPage().locator("li.nav.item a");
+    private Locator successMessage() {
+        return getByLocator(".message-success");
+    }
+
+    private Locator navItems() {
+        return getByLocator("li.nav.item a");
+    }
 
     public String getSuccessMessage() {
-//        getBrowserManager().getPage().pause();
-        return successMessage.innerText();
+        return successMessage().innerText();
     }
 
     public List<String> getNavItemsText() {
@@ -25,9 +29,5 @@ public class AccountPage extends BasePage {
 
     public void clickNavItemByText(String itemText) {
         navItems().filter(new Locator.FilterOptions().setHasText(itemText)).click();
-    }
-
-    private Locator navItems() {
-        return getBrowserManager().getPage().locator("li.nav.item a");
     }
 }

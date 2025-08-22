@@ -3,14 +3,22 @@ package pages;
 import browser.BrowserManager;
 import com.microsoft.playwright.Locator;
 import pages.base.BasePage;
-import session.SessionKeys;
+
+import static support.Constants.LOGIN_PATH;
 
 public class LoginPage extends BasePage {
+
+    private Locator loginButton() {
+        return getButtonByName("Logare");
+    }
+
+    private Locator registrationLink() {
+        return getLinkByName("Înregistrare");
+    }
+
     public LoginPage(BrowserManager browserManager) {
         super(browserManager);
     }
-
-    private Locator loginButton = getBrowserManager().getPage().locator("button.action.login.primary");
 
     public void typeEmail(String email) {
         fillField("email", email);
@@ -21,20 +29,18 @@ public class LoginPage extends BasePage {
     }
 
     public void clickLoginBtn() {
-        getBrowserManager().getPage().onceDialog(dialog -> {
-            String alertText = dialog.message();
-            scenarioSession.put(SessionKeys.ALERT_TEXT, alertText);
-            dialog.accept();
-        });
-        Locator loginButton = getBrowserManager().getPage().locator("#login-button");
-        waitAndClick(loginButton);
+        waitAndClick(loginButton());
     }
 
-    public void navigate() {
-        navigate("https://magento.softwaretestingboard.com/customer/account/login/");
+    public void navigateToLoginPage() {
+        navigate(LOGIN_PATH);
     }
 
     public boolean isLoginBtnDisplayed() {
-        return loginButton.isVisible();
+        return loginButton().isVisible();
+    }
+
+    public boolean isRegisterLinkDisplayed() {
+        return registrationLink().isVisible();
     }
 }
