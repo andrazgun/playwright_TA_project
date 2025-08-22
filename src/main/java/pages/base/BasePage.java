@@ -58,15 +58,23 @@ public class BasePage implements PageInterface {
         return getBrowserManager().getPage().getByTestId(testId);
     }
 
+    protected String getAlertText() {
+        return getBrowserManager().getPage().getByRole(AriaRole.ALERT).innerText().trim();
+    }
+
     protected void fillIfNotNull(String value, Locator locator) {
         if (value != null) {
             locator.fill(value);
         }
     }
 
+    protected Locator getByRole(String role, String name) {
+        return browserManager.getPage().getByRole(AriaRole.valueOf(role.toUpperCase()), new Page.GetByRoleOptions().setName(name));
+    }
+
     public void waitAndClickByRole(String role, String name) {
-        Locator element = browserManager.getPage().getByRole(AriaRole.valueOf(role.toUpperCase()), new Page.GetByRoleOptions().setName(name));
-        element.click();
+        getBrowserManager().setPage(getBrowserManager().getContext().waitForPage(() ->
+                        getByRole(role, name).click()));
     }
 
     public void waitAndClickBySelector(String selector) {
@@ -100,7 +108,7 @@ public class BasePage implements PageInterface {
 
     private void acceptConsentPopup() {
         try {
-            Locator consentButtonLocator = getButtonByName("Închide dialogul");
+            Locator consentButtonLocator = getByRole("button","Închide dialogul");
 
             if (consentButtonLocator.isVisible()) {
                 consentButtonLocator.click();

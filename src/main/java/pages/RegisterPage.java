@@ -51,7 +51,7 @@ public class RegisterPage extends BasePage {
     }
 
     private Locator registerBtn() {
-        return getButtonByName("Înregistrare");
+        return getByRole("button","Înregistrare");
     }
 
     private Locator loginLink() {

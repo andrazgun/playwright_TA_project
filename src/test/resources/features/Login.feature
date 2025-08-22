@@ -9,16 +9,15 @@ Feature: Login Page
     Then Login button is displayed
     And Register link is displayed
 
-#  @smoke
-#  Scenario Outline: Validate valid & invalid login credentials
-#    Given I navigate to HomePage
-#    When I click on the login portal button
-#    And I type a user name '<username>' and a password '<password>'
-#    And I click on the login button
-#    Then I should be presented with an alert box which contains text '<expectedAlertText>'
-#    Examples:
-#      | username  | password     | expectedAlertText    |
-#      |           |              | validation failed5    |
-#      | webdriver |              | validation failed    |
-#      |           | webdriver123 | validation failed    |
-#      | webdriver | webdriver123 | validation succeeded |
+  @smoke
+  Scenario Outline: Validate valid & invalid login credentials
+    When I type a user name '<username>' and a password '<password>'
+    And I click on the login button
+    Then Error message with text '<text>' is displayed
+    Examples:
+      | username             | password        | text                                                                                    |
+      |                      |                 | Numele de utilizator este obligatoriu.                                                  |
+      | agtest1@yopmail.com  |                 | câmpul parolă este gol.                                                                 |
+      | agtest12@yopmail.com | <c/Z2+:Vc4[~    | Adresă de email necunoscută. Verifică din nou sau încearcă cu numele tău de utilizator. |
+      | agtest1@yopmail.com  | <c/Z2+:Vc4[~555 | parola pe care ai introdus-o pentru adresa de email agtest1@yopmail.com este incorectă. |
+      | agtest1@yopmail.com  | <c/Z2+:Vc4[~    | validation succeeded                                                                    |

@@ -1,10 +1,11 @@
-#@regression @account
-#Feature: Account Page
-#
-#  Background: Pre Conditions
-#    Given I register a new account
-#
-#  @smoke
-#  Scenario: Account details
-#    When I click the nav item "Account Information"
-#    Then AccountEditPage is displayed
+@regression @account
+Feature: Account Page
+
+  Background: Pre Conditions
+    Given I navigate to LoginPage
+
+  @smoke
+  Scenario: Account details
+    When I log in
+    And I click the nav item "Deconectare"
+    Then Login button is displayed
