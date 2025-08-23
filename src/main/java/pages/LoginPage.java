@@ -20,6 +20,10 @@ public class LoginPage extends BasePage {
         return getByRole("button", "Logare");
     }
 
+    private Locator alert() {
+        return getByRole("alert");
+    }
+
     private Locator registrationLink() {
         return getByRole("link", "Înregistrare");
     }
@@ -52,8 +56,8 @@ public class LoginPage extends BasePage {
         return registrationLink().isVisible();
     }
 
-    public String getErrorMessage() {
-        return getAlertText();
+    public String getAlertErrorMessage() {
+        return getLocatorText(alert());
     }
 
     public void logIn() {

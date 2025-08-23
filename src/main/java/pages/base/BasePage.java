@@ -7,7 +7,6 @@ import com.microsoft.playwright.TimeoutError;
 import com.microsoft.playwright.options.AriaRole;
 import com.microsoft.playwright.options.WaitForSelectorState;
 import com.microsoft.playwright.options.WaitUntilState;
-import pages.PageInterface;
 import session.ScenarioSession;
 
 import java.util.ArrayList;
@@ -15,9 +14,8 @@ import java.util.List;
 
 import static support.Constants.BASE_URL;
 
-public class BasePage implements PageInterface {
+public class BasePage {
 
-    private static final String CONSENT_BUTTON_SELECTOR = "button.fc-cta-consent";
     private final BrowserManager browserManager;
     public static ScenarioSession scenarioSession;
 
@@ -30,10 +28,13 @@ public class BasePage implements PageInterface {
         return browserManager;
     }
 
-    public boolean isDisplayed(String expectedUrl) {
+    public boolean isAtUrl(String expectedUrl) {
         String currentUrl = getBrowserManager().getPage().url();
         return currentUrl.equalsIgnoreCase(expectedUrl);
-//        return currentUrl.contains(expectedUrl);
+    }
+
+    protected Locator getByRole(String role) {
+        return browserManager.getPage().getByRole(AriaRole.valueOf(role.toUpperCase()));
     }
 
     protected Locator getByRole(String role, String name) {
@@ -49,22 +50,12 @@ public class BasePage implements PageInterface {
         return getBrowserManager().getPage().getByTestId(testId);
     }
 
-    protected Locator getByText(String locator) {
-        return getBrowserManager().getPage().getByText(locator);
+    protected Locator getByText(String text) {
+        return getBrowserManager().getPage().getByText(text);
     }
 
-    protected Locator getButtonByName(String name) {
-        return getBrowserManager().getPage().getByRole(AriaRole.BUTTON,
-                new Page.GetByRoleOptions().setName(name));
-    }
-
-    protected Locator getLinkByName(String name) {
-        return getBrowserManager().getPage().getByRole(AriaRole.LINK,
-                new Page.GetByRoleOptions().setName(name));
-    }
-
-    protected String getAlertText() {
-        return getBrowserManager().getPage().getByRole(AriaRole.ALERT).innerText().trim();
+    protected String getLocatorText(Locator locator) {
+        return locator.innerText().trim();
     }
 
     protected void fillIfNotNull(String value, Locator locator) {
@@ -83,11 +74,11 @@ public class BasePage implements PageInterface {
         browserManager.getPage().click(selector);
     }
 
-    public void waitToStateVisible(Locator locator) {
+    public void waitForStateVisible(Locator locator) {
         locator.waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.VISIBLE));
     }
 
-    public void waitToStateDetached(Locator locator) {
+    public void waitForStateDetached(Locator locator) {
         locator.waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.DETACHED));
     }
 

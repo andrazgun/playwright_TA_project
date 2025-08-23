@@ -18,14 +18,6 @@ public class RegisterPage extends BasePage {
     private final RandomUser user = RandomUser.createRandom();
     CustomerDto customerDto = UserMapper.toDto(user);
 
-    private Locator firstNameField() {
-        return getByTestId("");
-    }
-
-    private Locator lastNameField() {
-        return getByTestId("");
-    }
-
     private Locator usernameField() {
         return getByTestId("reg_username");
     }
@@ -36,10 +28,6 @@ public class RegisterPage extends BasePage {
 
     private Locator passwordField() {
         return getByTestId("reg_password");
-    }
-
-    private Locator confirmPasswordField() {
-        return getByTestId("");
     }
 
     private Locator registerButton() {
@@ -55,7 +43,9 @@ public class RegisterPage extends BasePage {
     }
 
     private Locator loginLink() {
-        return getLinkByName("Autentificare");
+//        return getLinkByName("Autentificare");
+        return getByRole("link", "Autentificare");
+
     }
 
     public void navigateToRegistrationPage() {
@@ -86,6 +76,7 @@ public class RegisterPage extends BasePage {
 
     public boolean registerBtnIsDisplayed() {
         return registerBtn().isVisible();
+
     }
 
     public boolean isLoginLinkDisplayed() {

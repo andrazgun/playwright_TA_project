@@ -30,6 +30,6 @@ public class AccountPage extends BasePage {
     public void clickNavItemByText(String itemText) {
         Locator navItem = navItems().filter(new Locator.FilterOptions().setHasText(itemText));
         navItem.click();
-        waitToStateDetached(navItem);
+        waitForStateDetached(navItem);
     }
 }

@@ -15,6 +15,6 @@ public class AccountEditPage_steps {
 
     @Then("^AccountEditPage is displayed$")
     public void accountEditPageIsDisplayed() {
-        assertThat(accountEditPage.isDisplayed()).as("Account Information page is not displayed!").isTrue();
+        assertThat(accountEditPage.isAtUrl()).as("Account Information page is not displayed!").isTrue();
     }
 }

@@ -57,7 +57,7 @@ public class LoginPage_steps {
 
     @Then("Error message with text {string} is displayed")
     public void errorMessageWithTextTextIsDisplayed(String expectedText) {
-        assertThat(loginPage.getErrorMessage()).as("Wrong error message")
+        assertThat(loginPage.getAlertErrorMessage()).as("Wrong error message")
                 .containsIgnoringCase(expectedText);
     }
 

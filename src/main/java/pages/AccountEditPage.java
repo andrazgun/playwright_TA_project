@@ -12,7 +12,7 @@ public class AccountEditPage extends BasePage {
         super(browserManager);
     }
 
-    public boolean isDisplayed() {
-        return super.isDisplayed(ACCOUNT_EDIT_URL);
+    public boolean isAtUrl() {
+        return super.isAtUrl(ACCOUNT_EDIT_URL);
     }
 }

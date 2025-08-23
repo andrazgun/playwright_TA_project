@@ -9,7 +9,6 @@ Feature: Login Page
     Then Login button is displayed
     And Register link is displayed
 
-  @smoke
   Scenario Outline: Validate valid & invalid login credentials
     When I type a user name '<username>' and a password '<password>'
     And I click on the login button
