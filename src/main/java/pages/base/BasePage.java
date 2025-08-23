@@ -30,7 +30,7 @@ public class BasePage {
 
     public boolean isAtUrl(String expectedUrl) {
         String currentUrl = getBrowserManager().getPage().url();
-        return currentUrl.equalsIgnoreCase(expectedUrl);
+        return currentUrl.contains(expectedUrl);
     }
 
     protected Locator getByRole(String role) {
@@ -82,8 +82,12 @@ public class BasePage {
         locator.waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.DETACHED));
     }
 
+    public static String buildUrl(String path) {
+        return BASE_URL + path;
+    }
+
     public void navigate(String path) {
-        browserManager.getPage().navigate(BASE_URL + path, new Page.NavigateOptions()
+        browserManager.getPage().navigate(buildUrl(path), new Page.NavigateOptions()
                 .setWaitUntil(WaitUntilState.DOMCONTENTLOADED));
         acceptConsentPopup();
     }

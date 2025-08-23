@@ -16,7 +16,8 @@ public class AccountPage extends BasePage {
     }
 
     private Locator navItems() {
-        return getByLocator("nav.woocommerce-MyAccount-navigation ul li");
+//        return getByLocator("nav.woocommerce-MyAccount-navigation ul li");
+        return getByLocator("div.wd-my-account-links > div");
     }
 
     public String getSuccessMessage() {

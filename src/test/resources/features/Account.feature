@@ -7,5 +7,10 @@ Feature: Account Page
   @smoke
   Scenario: Account details
     When I log in
-    And I click the nav item "Deconectare"
+    And I click "Deconectare" from LHN
     Then Login button is displayed
+
+  Scenario: Orders
+    When I log in
+    And I click "Comenzi" from LHN
+    Then OrdersPage is displayed

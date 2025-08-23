@@ -43,7 +43,6 @@ public class RegisterPage extends BasePage {
     }
 
     private Locator loginLink() {
-//        return getLinkByName("Autentificare");
         return getByRole("link", "Autentificare");
 
     }

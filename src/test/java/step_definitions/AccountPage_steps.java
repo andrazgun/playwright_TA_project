@@ -13,7 +13,7 @@ public class AccountPage_steps {
         this.accountPage = accountPage;
     }
 
-    @When("I click the nav item {string}")
+    @When("I click {string} from LHN")
     public void clickNavItem(String itemText) {
         accountPage.clickNavItemByText(itemText);
     }
