@@ -8,6 +8,10 @@ import static support.Constants.*;
 
 public class LoginPage extends BasePage {
 
+    public LoginPage(BrowserManager browserManager) {
+        super(browserManager);
+    }
+
     private Locator usernameField() {
         return getByTestId("username");
     }
@@ -26,10 +30,6 @@ public class LoginPage extends BasePage {
 
     private Locator registrationLink() {
         return getByRole("link", "Înregistrare");
-    }
-
-    public LoginPage(BrowserManager browserManager) {
-        super(browserManager);
     }
 
     public void typeUsername(String username) {
@@ -61,6 +61,7 @@ public class LoginPage extends BasePage {
     }
 
     public void logIn() {
+        navigateToLoginPage();
         typeUsername(LOGIN_EMAIL);
         typePassword(LOGIN_PASSWORD);
         clickLoginBtn();
