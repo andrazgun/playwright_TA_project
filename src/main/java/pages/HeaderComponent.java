@@ -4,8 +4,8 @@ import browser.BrowserManager;
 import com.microsoft.playwright.Locator;
 import pages.base.BasePage;
 
-public class Header extends BasePage {
-    public Header(BrowserManager browserManager) {
+public class HeaderComponent extends BasePage {
+    public HeaderComponent(BrowserManager browserManager) {
         super(browserManager);
     }
 
