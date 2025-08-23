@@ -14,15 +14,8 @@ public class HomePage extends BasePage {
         navigate(HOME_PATH);
     }
 
-    public void clickRegisterBtn() {
-        getBrowserManager().setPage(getBrowserManager().getContext().waitForPage(() ->
-                waitAndClickByRole("link", "CONTACT US Contact Us Form")));
-
-        getBrowserManager().getPage().bringToFront(); //point to new opened tab
-    }
-
     public void clickLoginBtn() {
         getBrowserManager().setPage(getBrowserManager().getContext().waitForPage(() ->
-                waitAndClickByRole("button", "Logare")));
+                clickAndWaitByRole("button", "Logare")));
     }
 }

@@ -17,12 +17,10 @@ public class LoginPage extends BasePage {
     }
 
     private Locator loginButton() {
-//        return getButtonByName("Logare");
         return getByRole("button", "Logare");
     }
 
     private Locator registrationLink() {
-//        return getLinkByName("Înregistrare");
         return getByRole("link", "Înregistrare");
     }
 

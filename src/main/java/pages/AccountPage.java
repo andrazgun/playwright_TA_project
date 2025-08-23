@@ -28,6 +28,8 @@ public class AccountPage extends BasePage {
     }
 
     public void clickNavItemByText(String itemText) {
-        navItems().filter(new Locator.FilterOptions().setHasText(itemText)).click();
+        Locator navItem = navItems().filter(new Locator.FilterOptions().setHasText(itemText));
+        navItem.click();
+        waitToStateDetached(navItem);
     }
 }

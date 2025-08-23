@@ -36,8 +36,17 @@ public class BasePage implements PageInterface {
 //        return currentUrl.contains(expectedUrl);
     }
 
+    protected Locator getByRole(String role, String name) {
+        return browserManager.getPage().getByRole(AriaRole.valueOf(role.toUpperCase()),
+                new Page.GetByRoleOptions().setName(name));
+    }
+
     protected Locator getByLocator(String locator) {
         return getBrowserManager().getPage().locator(locator);
+    }
+
+    protected Locator getByTestId(String testId) {
+        return getBrowserManager().getPage().getByTestId(testId);
     }
 
     protected Locator getByText(String locator) {
@@ -54,10 +63,6 @@ public class BasePage implements PageInterface {
                 new Page.GetByRoleOptions().setName(name));
     }
 
-    protected Locator getByTestId(String testId) {
-        return getBrowserManager().getPage().getByTestId(testId);
-    }
-
     protected String getAlertText() {
         return getBrowserManager().getPage().getByRole(AriaRole.ALERT).innerText().trim();
     }
@@ -68,11 +73,7 @@ public class BasePage implements PageInterface {
         }
     }
 
-    protected Locator getByRole(String role, String name) {
-        return browserManager.getPage().getByRole(AriaRole.valueOf(role.toUpperCase()), new Page.GetByRoleOptions().setName(name));
-    }
-
-    public void waitAndClickByRole(String role, String name) {
+    public void clickAndWaitByRole(String role, String name) {
         getBrowserManager().setPage(getBrowserManager().getContext().waitForPage(() ->
                         getByRole(role, name).click()));
     }
@@ -82,9 +83,12 @@ public class BasePage implements PageInterface {
         browserManager.getPage().click(selector);
     }
 
-    public void waitAndClick(Locator locator) {
+    public void waitToStateVisible(Locator locator) {
         locator.waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.VISIBLE));
-        locator.click();
+    }
+
+    public void waitToStateDetached(Locator locator) {
+        locator.waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.DETACHED));
     }
 
     public void navigate(String path) {
