@@ -43,11 +43,6 @@ public class Wishlist_steps {
         wishlistPage.selectWishlistByName(arg0);
     }
 
-    @When("the customer creates a random wishlist")
-    public void theCustomerCreatesARandomWishlist() {
-        wishlistPage.createRandomWishlist();
-    }
-
     @When("the customer removes all the products from the wishlist")
     public void theCustomerRemovesAllTheProductsFromTheWishlist() {
         wishlistPage.removeAllProductsFromWishlist();
