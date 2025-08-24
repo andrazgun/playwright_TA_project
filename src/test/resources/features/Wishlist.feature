@@ -6,11 +6,11 @@ Feature: Wishlist management
 
   Background:
     Given the customer is logged in
+    When the customer clicks main icon
 
   Scenario: Add and remove product from wishlist
-    When the customer clicks main icon
-    And the customer adds a product to wishlist named favorite
-    When the customer clicks the wishlist icon on Header
+    When the customer adds a product to wishlist named favorite
+    And the customer clicks the wishlist icon on Header
     Then WishlistPage is displayed
     When the customer selects wishlist "Favorite"
     Then the wishlist should contain at least 1 products

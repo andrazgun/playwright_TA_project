@@ -34,14 +34,17 @@ public class LoginPage extends BasePage {
 
     public void typeUsername(String username) {
         usernameField().fill(username);
+        logger.info("Type username, {}", username);
     }
 
     public void typePassword(String password) {
         passwordField().fill(password);
+        logger.info("Type password, {}", password);
     }
 
     public void clickLoginBtn() {
         loginButton().click();
+        logger.info("Clicked Login button");
     }
 
     public void navigateToLoginPage() {
@@ -66,5 +69,6 @@ public class LoginPage extends BasePage {
         clickLoginBtn();
         typePassword(LOGIN_PASSWORD);
         clickLoginBtn();
+        waitForPageLoad();
     }
 }

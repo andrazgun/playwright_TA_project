@@ -6,6 +6,7 @@ import com.microsoft.playwright.Page;
 import com.microsoft.playwright.PlaywrightException;
 import com.microsoft.playwright.TimeoutError;
 import com.microsoft.playwright.options.AriaRole;
+import com.microsoft.playwright.options.LoadState;
 import com.microsoft.playwright.options.WaitForSelectorState;
 import com.microsoft.playwright.options.WaitUntilState;
 import org.slf4j.Logger;
@@ -97,6 +98,12 @@ public class BasePage {
         acceptAllCookies();
         logger.info("Navigate to {}", buildUrl(path));
     }
+
+    public void waitForPageLoad() {
+        browserManager.getPage().waitForLoadState(LoadState.LOAD);
+        logger.info("Page loaded");
+    }
+
 
     public void fillField(String placeholder, String text) {
         getBrowserManager().getPage().getByPlaceholder(placeholder).fill(text);

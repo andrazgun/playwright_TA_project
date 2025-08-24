@@ -97,7 +97,7 @@ public class BrowserManager {
 
     private void launchBrowser() {
         String browserType = System.getProperty("BROWSER", properties.getProperty("browser", "chromium")).toLowerCase(); // Get browser type from Jenkins parameter, with a fallback to config file, then to "chromium"
-        logger.info("Thread [{}] initializing browser: {}", Thread.currentThread().getId(), browserType);
+        logger.info("Thread [{}] initializing browser: {}", Thread.currentThread().threadId(), browserType);
 
         logger.info("Running in CI environment: {}. setHeadless[{}]", HEADLESS_MODE, HEADLESS_MODE);
 

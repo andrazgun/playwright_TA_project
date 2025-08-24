@@ -6,6 +6,7 @@ Feature: Search functionality
 
   Background:
     Given the customer is logged in
+    And the customer clicks main icon
 
   Scenario: Search with a valid keyword
     When the customer searches for "lapte praf"
