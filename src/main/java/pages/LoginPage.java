@@ -13,15 +13,15 @@ public class LoginPage extends BasePage {
     }
 
     private Locator usernameField() {
-        return getByTestId("username");
+        return getByTestId("auth-email");
     }
 
     private Locator passwordField() {
-        return getByTestId("password");
+        return getByTestId("auth-login-password");
     }
 
     private Locator loginButton() {
-        return getByRole("button", "Logare");
+        return getByTestId("auth-next-btn");
     }
 
     private Locator alert() {
@@ -63,6 +63,7 @@ public class LoginPage extends BasePage {
     public void logIn() {
         navigateToLoginPage();
         typeUsername(LOGIN_EMAIL);
+        clickLoginBtn();
         typePassword(LOGIN_PASSWORD);
         clickLoginBtn();
     }

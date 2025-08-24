@@ -3,11 +3,14 @@ package pages.base;
 import browser.BrowserManager;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import com.microsoft.playwright.PlaywrightException;
 import com.microsoft.playwright.TimeoutError;
 import com.microsoft.playwright.options.AriaRole;
 import com.microsoft.playwright.options.WaitForSelectorState;
 import com.microsoft.playwright.options.WaitUntilState;
+import org.slf4j.Logger;
 import session.ScenarioSession;
+import support.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +21,7 @@ public class BasePage {
 
     private final BrowserManager browserManager;
     public static ScenarioSession scenarioSession;
+    protected final Logger logger = LogUtil.getLogger(this.getClass());
 
     public BasePage(BrowserManager browserManager) {
         this.browserManager = browserManager;
@@ -106,17 +110,18 @@ public class BasePage {
     }
 
     private void acceptConsentPopup() {
-        try {
-            Locator consentButtonLocator = getByRole("button","Închide dialogul");
+        Locator consentButtonLocator = getByTestId("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll");
 
-            if (consentButtonLocator.isVisible()) {
-                consentButtonLocator.click();
-                System.out.println("✅ Consent popup accepted.");
-            }
+        try {
+            waitForStateVisible(consentButtonLocator);
+            consentButtonLocator.click();
+            logger.info("✅ Consent popup accepted.");
+
         } catch (TimeoutError e) {
-            System.out.println("ℹ️ Consent popup not displayed.");
-        } catch (Exception e) {
-            System.out.println("⚠️ Error interacting with consent popup: " + e.getMessage());
+            logger.info("ℹ️ Consent popup not displayed.");
+
+        } catch (PlaywrightException e) {
+            logger.warn("⚠️ Error interacting with consent popup: {}", e.getMessage());
         }
     }
 }
