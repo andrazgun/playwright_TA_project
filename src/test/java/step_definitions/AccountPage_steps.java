@@ -5,6 +5,8 @@ import io.cucumber.java.en.When;
 import org.assertj.core.api.Assertions;
 import pages.AccountPage;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 public class AccountPage_steps {
 
     private final AccountPage accountPage;
@@ -22,6 +24,11 @@ public class AccountPage_steps {
     public void messageIsDisplayed(String message) {
         String actualMessage = accountPage.getSuccessMessage();
         Assertions.assertThat(actualMessage).contains(message);
+    }
+
+    @When("AccountPage is displayed")
+    public void accountPageIsDisplayed() {
+        assertThat(accountPage.isAtUrl()).as("Wrong URL").isTrue();
     }
 }
 

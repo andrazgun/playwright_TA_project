@@ -34,6 +34,7 @@ public class BasePage {
 
     public boolean isAtUrl(String expectedUrl) {
         String currentUrl = getBrowserManager().getPage().url();
+        logger.info("Current url {}", currentUrl);
         return currentUrl.contains(expectedUrl);
     }
 
@@ -93,11 +94,17 @@ public class BasePage {
     public void navigate(String path) {
         browserManager.getPage().navigate(buildUrl(path), new Page.NavigateOptions()
                 .setWaitUntil(WaitUntilState.DOMCONTENTLOADED));
-        acceptConsentPopup();
+        acceptAllCookies();
+        logger.info("Navigate to {}", buildUrl(path));
     }
 
     public void fillField(String placeholder, String text) {
         getBrowserManager().getPage().getByPlaceholder(placeholder).fill(text);
+    }
+
+    public void fillField(Locator locator, String text) {
+        locator.clear();
+        locator.fill(text);
     }
 
     protected List<String> getLocatorTexts(Locator locator) {
@@ -109,7 +116,7 @@ public class BasePage {
         return texts;
     }
 
-    private void acceptConsentPopup() {
+    private void acceptAllCookies() {
         Locator consentButtonLocator = getByTestId("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll");
 
         try {

@@ -61,8 +61,8 @@ public class LoginPage_steps {
                 .containsIgnoringCase(expectedText);
     }
 
-    @When("I log in")
-    public void iLogIn() {
+    @When("the customer is logged in")
+    public void customerIsLoggedIn() {
         loginPage.logIn();
     }
 }
