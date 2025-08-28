@@ -57,6 +57,20 @@ public class BrowserManager {
         return null;
     }
 
+    public void clearCookies() {
+        BrowserContext ctx = getContext();
+        if (getContext() != null) {
+            try {
+                ctx.clearCookies();
+                logger.info("All cookies cleared from BrowserContext.");
+            } catch (Exception e) {
+                logger.error("Failed to clear cookies", e);
+            }
+        } else {
+            logger.warn("No active BrowserContext found; cannot clear cookies.");
+        }
+    }
+
     public void setUp() {
         logger.info("Setting up Playwright initiated");
 
@@ -86,7 +100,7 @@ public class BrowserManager {
 
     public void tearDown() {
         logger.info("Tearing down Playwright initiated");
-
+        clearCookies();
         closeAndRemove(page);
         closeAndRemove(context);
         closeAndRemove(browser);
