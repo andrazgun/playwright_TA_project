@@ -77,7 +77,7 @@ public class WishlistPage extends BasePage {
     public void removeAllProductsFromWishlist() {
         while (removeProductIcons().count() > 0) {
             removeProductIcons().first().click();
-            waitForSuccessToast(); // ensures each deletion is processed before continuing
+            waitForSuccessToast();
         }
     }
 }

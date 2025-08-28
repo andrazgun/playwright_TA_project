@@ -21,7 +21,7 @@ public class LoginPage extends BasePage {
     }
 
     private Locator loginButton() {
-        return getByTestId("auth-next-btn");
+        return getByTestId("auth-next-btn").first();
     }
 
     private Locator alert() {
@@ -67,8 +67,10 @@ public class LoginPage extends BasePage {
         navigateToLoginPage();
         typeUsername(LOGIN_EMAIL);
         clickLoginBtn();
+        waitForLoaderToDisappear();
         typePassword(LOGIN_PASSWORD);
         clickLoginBtn();
+        waitForLoaderToDisappear();
         waitForPageLoad();
     }
 }

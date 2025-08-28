@@ -121,7 +121,6 @@ public class BrowserManager {
         BrowserType playwrightBrowserType = switch (browserType) {
             case "firefox" -> playwright.get().firefox();
             case "chromium" -> playwright.get().chromium();
-            case "webkit" -> playwright.get().webkit();
             default -> {
                 logger.warn("Unsupported browser type: {}. Defaulting to chromium", browserType);
                 yield playwright.get().chromium();

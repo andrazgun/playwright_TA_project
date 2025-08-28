@@ -24,6 +24,9 @@ public class BasePage {
     public static ScenarioSession scenarioSession;
     protected final Logger logger = LogUtil.getLogger(this.getClass());
 
+    private Locator loader() { return getByLocator("[id='pl-msg']");
+    }
+
     public BasePage(BrowserManager browserManager) {
         this.browserManager = browserManager;
         scenarioSession = new ScenarioSession();
@@ -88,6 +91,20 @@ public class BasePage {
         locator.waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.DETACHED));
     }
 
+    public void waitForLocatorByState(Locator locator, String state) {
+        WaitForSelectorState waitState;
+
+        try {
+            waitState = WaitForSelectorState.valueOf(state.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            logger.error("Invalid state [{}] provided. Valid states are: VISIBLE, HIDDEN, ATTACHED, DETACHED.", state);
+            throw new IllegalArgumentException("Invalid state: " + state, e);
+        }
+
+        locator.waitFor(new Locator.WaitForOptions().setState(waitState));
+        logger.info("Loader [{}] successfully reached state [{}].", locator, waitState);
+    }
+
     public static String buildUrl(String path) {
         return BASE_URL + path;
     }
@@ -112,6 +129,25 @@ public class BasePage {
     public void fillField(Locator locator, String text) {
         locator.clear();
         locator.fill(text);
+    }
+
+    public void waitForLoaderToDisappear() {
+        try {
+            if (loader().isVisible()) {
+                logger.info("Loader detected. Waiting for it to disappear...");
+                waitForLocatorByState(loader(), "hidden");
+                logger.info("Loader successfully disappeared.");
+            } else {
+                logger.info("No loader displayed. Continuing execution...");
+            }
+        } catch (Exception e) {
+            logger.error("Failed while waiting for loader [#pl-msg] to disappear.", e);
+            throw e;
+        }
+    }
+
+    public void clearCookies(){
+        getBrowserManager().clearCookies();
     }
 
     protected List<String> getLocatorTexts(Locator locator) {
