@@ -13,15 +13,15 @@ public class LoginPage extends BasePage {
     }
 
     private Locator usernameField() {
-        return getByTestId("username");
+        return getByTestId("auth-email");
     }
 
     private Locator passwordField() {
-        return getByTestId("password");
+        return getByTestId("auth-login-password");
     }
 
     private Locator loginButton() {
-        return getByRole("button", "Logare");
+        return getByTestId("auth-next-btn").first();
     }
 
     private Locator alert() {
@@ -32,20 +32,30 @@ public class LoginPage extends BasePage {
         return getByRole("link", "Înregistrare");
     }
 
+    String redirectApiUrl = "https://comenzi.bebetei.ro/users/login/dologin";
+    String expectedRedirectJson = "{\"redirect-to\":\"https:\\/\\/comenzi.bebetei.ro\\/dashboard\"}";
+
     public void typeUsername(String username) {
         usernameField().fill(username);
+        logger.info("Type username, {}", username);
     }
 
     public void typePassword(String password) {
         passwordField().fill(password);
+        logger.info("Type password, {}", password);
     }
 
     public void clickLoginBtn() {
         loginButton().click();
+        logger.info("Clicked Login button");
     }
 
     public void navigateToLoginPage() {
-        navigate(LOGIN_PATH);
+        navigate(PATH_LOGIN);
+    }
+
+    public boolean isAtUrl() {
+        return super.isAtUrl(PATH_LOGIN);
     }
 
     public boolean isLoginBtnDisplayed() {
@@ -57,13 +67,17 @@ public class LoginPage extends BasePage {
     }
 
     public String getAlertErrorMessage() {
-        return getLocatorText(alert());
+        return getLocatorInnerText(alert());
     }
 
-    public void logIn() {
+    public void logIn() throws Exception {
         navigateToLoginPage();
         typeUsername(LOGIN_EMAIL);
-        typePassword(LOGIN_PASSWORD);
         clickLoginBtn();
+        waitForLoaderToDisappear();
+        typePassword(LOGIN_PASSWORD);
+        clickUntilRedirect(loginButton(), redirectApiUrl, expectedRedirectJson);
+        waitForLoaderToDisappear();
+        waitForPageLoad();
     }
 }

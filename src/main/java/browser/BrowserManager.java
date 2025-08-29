@@ -57,6 +57,20 @@ public class BrowserManager {
         return null;
     }
 
+    public void clearCookies() {
+        BrowserContext ctx = getContext();
+        if (getContext() != null) {
+            try {
+                ctx.clearCookies();
+                logger.info("All cookies cleared from BrowserContext.");
+            } catch (Exception e) {
+                logger.error("Failed to clear cookies", e);
+            }
+        } else {
+            logger.warn("No active BrowserContext found; cannot clear cookies.");
+        }
+    }
+
     public void setUp() {
         logger.info("Setting up Playwright initiated");
 
@@ -86,7 +100,7 @@ public class BrowserManager {
 
     public void tearDown() {
         logger.info("Tearing down Playwright initiated");
-
+        clearCookies();
         closeAndRemove(page);
         closeAndRemove(context);
         closeAndRemove(browser);
@@ -97,7 +111,7 @@ public class BrowserManager {
 
     private void launchBrowser() {
         String browserType = System.getProperty("BROWSER", properties.getProperty("browser", "chromium")).toLowerCase(); // Get browser type from Jenkins parameter, with a fallback to config file, then to "chromium"
-        logger.info("Thread [{}] initializing browser: {}", Thread.currentThread().getId(), browserType);
+        logger.info("Thread [{}] initializing browser: {}", Thread.currentThread().threadId(), browserType);
 
         logger.info("Running in CI environment: {}. setHeadless[{}]", HEADLESS_MODE, HEADLESS_MODE);
 
@@ -107,7 +121,6 @@ public class BrowserManager {
         BrowserType playwrightBrowserType = switch (browserType) {
             case "firefox" -> playwright.get().firefox();
             case "chromium" -> playwright.get().chromium();
-            case "webkit" -> playwright.get().webkit();
             default -> {
                 logger.warn("Unsupported browser type: {}. Defaulting to chromium", browserType);
                 yield playwright.get().chromium();

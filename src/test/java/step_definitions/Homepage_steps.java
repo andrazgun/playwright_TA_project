@@ -1,7 +1,6 @@
 package step_definitions;
 
 import io.cucumber.java.en.Given;
-import io.cucumber.java.en.When;
 import pages.HomePage;
 
 public class Homepage_steps {
@@ -11,13 +10,8 @@ public class Homepage_steps {
         this.homePage = homePage;
     }
 
-    @Given("I navigate to HomePage")
-    public void iNavigateToHomePage() {
+    @Given("the customer opens Homepage")
+    public void customerOpensHomePage() {
         homePage.navigateToHomePage();
-    }
-
-    @When("I click on the login portal button")
-    public void iClickOnTheLoginPortalButton() {
-        homePage.clickLoginBtn();
     }
 }

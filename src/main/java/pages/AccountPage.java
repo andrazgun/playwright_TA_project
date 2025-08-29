@@ -4,7 +4,7 @@ import browser.BrowserManager;
 import com.microsoft.playwright.Locator;
 import pages.base.BasePage;
 
-import java.util.List;
+import static support.Constants.PATH_ACCOUNT;
 
 public class AccountPage extends BasePage {
     public AccountPage(BrowserManager browserManager) {
@@ -16,16 +16,15 @@ public class AccountPage extends BasePage {
     }
 
     private Locator navItems() {
-//        return getByLocator("nav.woocommerce-MyAccount-navigation ul li");
         return getByLocator("div.wd-my-account-links > div");
+    }
+
+    public boolean isAtUrl() {
+        return super.isAtUrl(PATH_ACCOUNT);
     }
 
     public String getSuccessMessage() {
         return successMessage().innerText();
-    }
-
-    public List<String> getNavItemsText() {
-        return getLocatorTexts(navItems());
     }
 
     public void clickNavItemByText(String itemText) {

@@ -3,7 +3,7 @@ package pages;
 import browser.BrowserManager;
 import pages.base.BasePage;
 
-import static support.Constants.HOME_PATH;
+import static support.Constants.PATH_HOME;
 
 public class HomePage extends BasePage {
     public HomePage(BrowserManager browserManager) {
@@ -11,7 +11,7 @@ public class HomePage extends BasePage {
     }
 
     public void navigateToHomePage() {
-        navigate(HOME_PATH);
+        navigate(PATH_HOME);
     }
 
     public void clickLoginBtn() {
