@@ -8,7 +8,7 @@ import mapper.UserMapper;
 import pages.base.BasePage;
 import session.SessionKeys;
 
-import static support.Constants.REGISTRATION_PATH;
+import static support.Constants.PATH_REGISTRATION;
 
 public class RegisterPage extends BasePage {
     public RegisterPage(BrowserManager browserManager) {
@@ -48,7 +48,7 @@ public class RegisterPage extends BasePage {
     }
 
     public void navigateToRegistrationPage() {
-        navigate(REGISTRATION_PATH);
+        navigate(PATH_REGISTRATION);
     }
 
     public void fillRegistrationForm() {

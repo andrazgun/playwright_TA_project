@@ -41,6 +41,7 @@ public class Hooks {
                 logger.warn("Screenshot not attached; no valid screenshot data.");
             }
         }
+        browserManager.clearCookies();
         browserManager.tearDown();
         logger.info("tearDown()");
     }

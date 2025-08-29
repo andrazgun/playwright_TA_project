@@ -38,10 +38,20 @@ public class PlpPage_steps {
         plpPage.selectFavoriteListFromPopup();
     }
 
+    @When("the customer clicks add to list on first product")
+    public void theCustomerClicksAddToListOnFirstProduct() {
+        plpPage.clickHeartIconOnFirstProduct();
+    }
+
     @Then("success message is displayed on PlpPage")
     public void successMessageIsDisplayedOnPlpPage() {
         Assertions.assertThat(plpPage.successMessageIsDisplayed())
                 .as("Success message not displayed")
                 .isTrue();
+    }
+
+    @When("the customer adds first product to cart")
+    public void theCustomerAddsFirstProductToCart() {
+        plpPage.clickAddToFirstProduct();
     }
 }

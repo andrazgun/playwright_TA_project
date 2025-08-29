@@ -4,7 +4,7 @@ import browser.BrowserManager;
 import com.microsoft.playwright.Locator;
 import pages.base.BasePage;
 
-import static support.Constants.WISHLIST_PATH;
+import static support.Constants.*;
 
 public class WishlistPage extends BasePage {
 
@@ -41,8 +41,8 @@ public class WishlistPage extends BasePage {
     }
 
     public void waitForSuccessToast() {
-        waitForStateVisible(successToast());
-        waitForStateDetached(successToast());
+        waitForLocatorByState(successToast(), STATE_VISIBLE);
+        waitForLocatorByState(successToast(), STATE_DETACHED);
     }
 
     public int getWishlistProductCount() {
@@ -71,7 +71,7 @@ public class WishlistPage extends BasePage {
     }
 
     public boolean isAtUrl() {
-        return super.isAtUrl(WISHLIST_PATH);
+        return super.isAtUrl(PATH_WISHLIST);
     }
 
     public void removeAllProductsFromWishlist() {

@@ -3,7 +3,7 @@ package pages;
 import browser.BrowserManager;
 import pages.base.BasePage;
 
-import static support.Constants.SHOP_PATH;
+import static support.Constants.PATH_SHOP;
 
 public class ShopPage extends BasePage {
 
@@ -12,11 +12,11 @@ public class ShopPage extends BasePage {
     }
 
     public boolean isAtUrl() {
-        return super.isAtUrl(SHOP_PATH);
+        return super.isAtUrl(PATH_SHOP);
     }
 
     public void navigateToShopPage() {
-        navigate(SHOP_PATH);
+        navigate(PATH_SHOP);
     }
 
 }

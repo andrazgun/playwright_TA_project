@@ -100,7 +100,6 @@ public class BrowserManager {
 
     public void tearDown() {
         logger.info("Tearing down Playwright initiated");
-        clearCookies();
         closeAndRemove(page);
         closeAndRemove(context);
         closeAndRemove(browser);

@@ -1,12 +1,8 @@
 @smoke
 Feature: Search functionality
-  As a logged-in customer
-  I want to use the search functionality
-  So that I can quickly find products
 
   Background:
-    Given the customer is logged in
-    And the customer clicks main icon
+    Given the customer opens Homepage
 
   Scenario: Search with a valid keyword
     When the customer searches for "lapte praf"
