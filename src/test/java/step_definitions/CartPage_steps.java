@@ -2,7 +2,7 @@ package step_definitions;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-import pages.base.CartPage;
+import pages.CartPage;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 

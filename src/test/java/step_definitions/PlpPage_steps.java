@@ -7,6 +7,8 @@ import pages.PlpPage;
 
 import java.util.List;
 
+import static support.StringUtils.replaceLineWithSpace;
+
 public class PlpPage_steps {
 
     private final PlpPage plpPage;
@@ -15,9 +17,9 @@ public class PlpPage_steps {
         this.plpPage = plpPage;
     }
 
-    @Then("the search results should display products related to {string}")
-    public void theSearchResultsShouldDisplayRelevantProducts(String text) {
-        List<String> productTitles = plpPage.getProductTitlesTextList();
+    @Then("the first {long} products displayed should related to {string}")
+    public void theSearchResultsShouldDisplayRelevantProducts(long productListLimit, String text) {
+        List<String> productTitles = plpPage.getProductTitlesTextList(productListLimit);
         Assertions.assertThat(productTitles)
                 .anyMatch(title -> title.toLowerCase().contains(text.toLowerCase()));
     }
@@ -53,5 +55,17 @@ public class PlpPage_steps {
     @When("the customer adds first product to cart")
     public void theCustomerAddsFirstProductToCart() {
         plpPage.clickAddToFirstProduct();
+    }
+
+    @When("the customer select product category {string}")
+    public void selectProductCategoryString(String categoryName) {
+        plpPage.selectCategoryByName(categoryName);
+    }
+
+    @Then("Product category page {string} is displayed")
+    public void productCategoryPageIsDisplayed(String arg0) {
+        Assertions.assertThat(
+                replaceLineWithSpace(plpPage.getUrl()))
+                .as("Wrong url").containsIgnoringCase(arg0);
     }
 }

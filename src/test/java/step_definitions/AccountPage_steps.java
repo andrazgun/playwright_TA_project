@@ -22,7 +22,7 @@ public class AccountPage_steps {
 
     @Then("Message {string} is displayed on AccountPage")
     public void messageIsDisplayed(String message) {
-        String actualMessage = accountPage.getSuccessMessage();
+        String actualMessage = accountPage.getSuccessMessageText();
         Assertions.assertThat(actualMessage).contains(message);
     }
 

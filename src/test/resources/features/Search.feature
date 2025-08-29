@@ -6,7 +6,7 @@ Feature: Search functionality
 
   Scenario: Search with a valid keyword
     When the customer searches for "lapte praf"
-    Then the search results should display products related to "lapte praf"
+    Then the first 4 products displayed should related to "lapte praf"
 
   Scenario: Search with an invalid keyword
     When the customer searches for "xyz123"

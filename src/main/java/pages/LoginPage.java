@@ -70,7 +70,7 @@ public class LoginPage extends BasePage {
         return getLocatorInnerText(alert());
     }
 
-    public void logIn() throws Exception {
+    public void logIn() {
         navigateToLoginPage();
         typeUsername(LOGIN_EMAIL);
         clickLoginBtn();

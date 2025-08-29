@@ -5,6 +5,7 @@ import com.microsoft.playwright.Locator;
 import pages.base.BasePage;
 
 import static support.Constants.PATH_ACCOUNT;
+import static support.Constants.STATE_DETACHED;
 
 public class AccountPage extends BasePage {
     public AccountPage(BrowserManager browserManager) {
@@ -23,13 +24,13 @@ public class AccountPage extends BasePage {
         return super.isAtUrl(PATH_ACCOUNT);
     }
 
-    public String getSuccessMessage() {
-        return successMessage().innerText();
+    public String getSuccessMessageText() {
+        return getLocatorInnerText(successMessage());
     }
 
     public void clickNavItemByText(String itemText) {
         Locator navItem = navItems().filter(new Locator.FilterOptions().setHasText(itemText));
         navItem.click();
-        waitForStateDetached(navItem);
+        waitForLocatorByState(navItem, STATE_DETACHED);
     }
 }

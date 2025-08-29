@@ -24,10 +24,6 @@ public class BasePage {
     private Locator loader() { return getByLocator("[id='pl-msg']");
     }
 
-    private Locator acceptAllCookiesButton() {
-        return getByTestId("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll").last();
-    }
-
     private Locator declineCookiesButton() {
         return getByTestId("CybotCookiebotDialogBodyButtonDecline");
     }
@@ -39,6 +35,10 @@ public class BasePage {
 
     protected BrowserManager getBrowserManager() {
         return browserManager;
+    }
+
+    public String getUrl() {
+        return getBrowserManager().getPage().url();
     }
 
     public boolean isAtUrl(String expectedUrl) {
@@ -86,14 +86,6 @@ public class BasePage {
     public void waitAndClickBySelector(String selector) {
         browserManager.getPage().waitForSelector(selector, new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE));
         browserManager.getPage().click(selector);
-    }
-
-    public void waitForStateVisible(Locator locator) {
-        locator.waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.VISIBLE));
-    }
-
-    public void waitForStateDetached(Locator locator) {
-        locator.waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.DETACHED));
     }
 
     public void waitForLocatorByState(Locator locator, String state) {

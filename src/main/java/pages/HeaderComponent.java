@@ -84,7 +84,7 @@ public class HeaderComponent extends BasePage {
     }
 
     public List<String> getAutocompleteSuggestions() {
-        waitForStateVisible(autocompleteSuggestionsResult().first());
+        waitForLocatorByState(autocompleteSuggestionsResult().first(), STATE_VISIBLE);
         return autocompleteSuggestionsResult()
                 .allInnerTexts()
                 .stream()
@@ -97,19 +97,16 @@ public class HeaderComponent extends BasePage {
     }
 
     public String getWishlistIconCount() {
-        return getProductCount(wishlistIconCount());
+        return getLocatorInnerText(wishlistIconCount());
     }
 
     public String getCartIconCount() {
         waitForLocatorByState(alertComponent.alertDialog(), STATE_HIDDEN);
-        return getProductCount(cartIconCount());
+        return  getLocatorInnerText(cartIconCount());
     }
 
     public String getProductQuantity() {
-        return getProductCount(productQuantity());
+        return getLocatorInnerText(productQuantity());
     }
 
-    private String getProductCount(Locator locator) {
-        return getLocatorInnerText(locator);
-    }
 }

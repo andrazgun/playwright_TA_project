@@ -10,8 +10,11 @@ import static support.Constants.STATE_VISIBLE;
 
 public class PlpPage extends BasePage {
 
-    public PlpPage(BrowserManager browserManager) {
+    private final LHNComponent lhnComponent;
+
+    public PlpPage(BrowserManager browserManager, LHNComponent lhnComponent) {
         super(browserManager);
+        this.lhnComponent = lhnComponent;
     }
 
     private Locator productTitle() {
@@ -42,11 +45,11 @@ public class PlpPage extends BasePage {
         return getLocatorInnerText(noResultsInfo());
     }
 
-    public List<String> getProductTitlesTextList() {
+    public List<String> getProductTitlesTextList(long listLimit) {
         waitForLocatorByState(addToCartButton().first(), STATE_VISIBLE);
         return productTitle().allInnerTexts()
                 .stream()
-                .limit(4)
+                .limit(listLimit)
                 .map(String::trim)
                 .toList();
     }
@@ -67,5 +70,9 @@ public class PlpPage extends BasePage {
 
     public boolean successMessageIsDisplayed() {
         return successMessage().isVisible();
+    }
+
+    public void selectCategoryByName(String name) {
+        lhnComponent.clickProductCategoryByName(name);
     }
 }

@@ -9,10 +9,10 @@ public class CartSide extends BasePage {
         super(browserManager);
     }
 
-    private Locator cart() { return getByLocator("button btn-cart wc-forward");}
-    private Locator checkout() { return getByLocator("button checkout wc-forward");}
+    private Locator cartButton() { return getByLocator("button btn-cart wc-forward");}
+    private Locator checkoutButton() { return getByLocator("button checkout wc-forward");}
 
     public void goToCart() {
-        cart().click();
+        cartButton().click();
     }
 }

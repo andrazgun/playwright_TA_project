@@ -1,10 +1,11 @@
-package pages.base;
+package pages;
 
 import browser.BrowserManager;
+import pages.base.BasePage;
 
 import static support.Constants.PATH_CART;
 
-public class CartPage extends BasePage{
+public class CartPage extends BasePage {
 
     public CartPage(BrowserManager browserManager) {
         super(browserManager);
