@@ -6,6 +6,8 @@ import pages.base.BasePage;
 
 import java.util.List;
 
+import static support.Constants.STATE_VISIBLE;
+
 public class PlpPage extends BasePage {
 
     public PlpPage(BrowserManager browserManager) {
@@ -13,7 +15,7 @@ public class PlpPage extends BasePage {
     }
 
     private Locator productTitle() {
-        return getByLocator("[class='item-title text-center ']");
+        return getByLocator("[class='item-title text-center '] h4");
     }
 
     private Locator noResultsInfo() {
@@ -41,6 +43,7 @@ public class PlpPage extends BasePage {
     }
 
     public List<String> getProductTitlesTextList() {
+        waitForLocatorByState(addToCartButton().first(), STATE_VISIBLE);
         return productTitle().allInnerTexts()
                 .stream()
                 .limit(4)

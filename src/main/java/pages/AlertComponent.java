@@ -10,7 +10,7 @@ public class AlertComponent extends BasePage {
         super(browserManager);
     }
 
-    private Locator alertDialog() {
+    public Locator alertDialog() {
         return getByLocator("div[role='alertdialog']");
     }
 

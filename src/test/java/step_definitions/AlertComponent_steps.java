@@ -13,7 +13,7 @@ public class AlertComponent_steps {
         this.alertComponent = alertComponent;
     }
 
-    @Then("Message {string} is displayed")
+    @Then("message {string} is displayed")
     public void messageIsDisplayed(String message) {
         Assertions.assertThat(alertComponent.getAlertText()).contains(message);
     }

@@ -16,8 +16,8 @@ public class Header_steps {
         this.headerComponent = headerComponent;
     }
 
-    @And("I click cart on Header")
-    public void iClickCartButton() {
+    @And("the customer clicks cart on Header")
+    public void clicksCartButton() {
         headerComponent.clickCartIcon();
     }
 
@@ -52,8 +52,24 @@ public class Header_steps {
 
     @And("product count {string} on wishlist icon is displayed on Header")
     public void productCountStringOnWishlistIconIsDisplayedOnHeader(String text) {
-        Assertions.assertThat(headerComponent.getWishlistCount())
+        Assertions.assertThat(headerComponent.getWishlistIconCount())
                 .as("Count is wrong")
                 .isEqualTo(text);
+    }
+
+    @And("product count {string} on cart icon is displayed on Header")
+    public void productCountOnCartIconIsDisplayedOnHeader(String arg0) {
+        String productCount = headerComponent.getCartIconCount();
+        Assertions.assertThat(productCount)
+                .as("Count is wrong")
+                .isEqualTo(arg0);
+    }
+
+    @Then("Product with quantity {string} is displayed on Header")
+    public void productWithQuantityIsDisplayedOnHeader(String arg0) {
+        String productQuantity = headerComponent.getProductQuantity();
+        Assertions.assertThat(productQuantity)
+                .as("Quantity is wrong")
+                .isEqualTo(arg0);
     }
 }

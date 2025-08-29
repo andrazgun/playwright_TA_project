@@ -6,9 +6,16 @@ import pages.base.BasePage;
 
 import java.util.List;
 
+import static support.Constants.STATE_HIDDEN;
+import static support.Constants.STATE_VISIBLE;
+
 public class HeaderComponent extends BasePage {
-    public HeaderComponent(BrowserManager browserManager) {
+
+    private final AlertComponent alertComponent;
+
+    public HeaderComponent(BrowserManager browserManager, AlertComponent alertComponent) {
         super(browserManager);
+        this.alertComponent = alertComponent;
     }
 
     private Locator searchField() {
@@ -35,12 +42,20 @@ public class HeaderComponent extends BasePage {
         return getByLocator("[id='top-cart-btn-qty']");
     }
 
+    private Locator productQuantity() {
+        return getByLocator("[class='cart_product cart-item'] [class='product-quantity']");
+    }
+
     private Locator wishlistIconCount() {
         return getByLocator("[id='wishlist-count-desktop']");
     }
 
     private Locator mainIcon() {
         return getByLocator("[title='Bebe Tei']").first();
+    }
+
+    private Locator cartPopup() {
+        return getByLocator("[id='cart-popup']");
     }
 
     public void typeInSearchField(String text) {
@@ -60,6 +75,7 @@ public class HeaderComponent extends BasePage {
 
     public void clickCartIcon() {
         cartIcon().nth(0).click();
+        waitForLocatorByState(cartPopup(), STATE_VISIBLE);
     }
 
     public void searchFor(String text) {
@@ -76,11 +92,24 @@ public class HeaderComponent extends BasePage {
                 .toList();
     }
 
-    public String getWishlistCount() {
-        return getLocatorInnerText(wishlistIconCount());
-    }
-
     public void clickMainIcon() {
         mainIcon().click();
+    }
+
+    public String getWishlistIconCount() {
+        return getProductCount(wishlistIconCount());
+    }
+
+    public String getCartIconCount() {
+        waitForLocatorByState(alertComponent.alertDialog(), STATE_HIDDEN);
+        return getProductCount(cartIconCount());
+    }
+
+    public String getProductQuantity() {
+        return getProductCount(productQuantity());
+    }
+
+    private String getProductCount(Locator locator) {
+        return getLocatorInnerText(locator);
     }
 }
