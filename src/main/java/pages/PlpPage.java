@@ -21,7 +21,11 @@ public class PlpPage extends BasePage {
     }
 
     private Locator heartIcon() {
-        return getByLocator("a.icon-favorite-btn.js-favorite");
+        return getByLocator("[class='icon-favorite-btn']");
+    }
+
+    private Locator addToCartButton() {
+        return getByLocator("[class='btn btn-primary cd-add-to-cart']");
     }
 
     private Locator favoriteWishlistFromPopup() {
@@ -33,7 +37,7 @@ public class PlpPage extends BasePage {
     }
 
     public String getNoResultInfoText() {
-        return getLocatorText(noResultsInfo());
+        return getLocatorInnerText(noResultsInfo());
     }
 
     public List<String> getProductTitlesTextList() {
@@ -47,6 +51,11 @@ public class PlpPage extends BasePage {
     public void clickHeartIconOnFirstProduct() {
         heartIcon().first().scrollIntoViewIfNeeded();
         heartIcon().first().click();
+    }
+
+    public void clickAddToFirstProduct() {
+        addToCartButton().first().scrollIntoViewIfNeeded();
+        addToCartButton().first().click();
     }
 
     public void selectFavoriteListFromPopup() {

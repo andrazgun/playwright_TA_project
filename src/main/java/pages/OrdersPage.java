@@ -4,7 +4,7 @@ import browser.BrowserManager;
 import com.microsoft.playwright.Locator;
 import pages.base.BasePage;
 
-import static support.Constants.ORDERS_PATH;
+import static support.Constants.PATH_ORDERS;
 
 public class OrdersPage extends BasePage {
 
@@ -17,7 +17,7 @@ public class OrdersPage extends BasePage {
     }
 
     public boolean isAtUrl() {
-        return super.isAtUrl(ORDERS_PATH);
+        return super.isAtUrl(PATH_ORDERS);
     }
 
     public void clickFirstProduct() {

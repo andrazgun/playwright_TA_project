@@ -4,7 +4,7 @@ import browser.BrowserManager;
 import com.microsoft.playwright.Locator;
 import pages.base.BasePage;
 
-import static support.Constants.ACCOUNT_PATH;
+import static support.Constants.PATH_ACCOUNT;
 
 public class AccountPage extends BasePage {
     public AccountPage(BrowserManager browserManager) {
@@ -20,7 +20,7 @@ public class AccountPage extends BasePage {
     }
 
     public boolean isAtUrl() {
-        return super.isAtUrl(ACCOUNT_PATH);
+        return super.isAtUrl(PATH_ACCOUNT);
     }
 
     public String getSuccessMessage() {

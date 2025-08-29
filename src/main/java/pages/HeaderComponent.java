@@ -28,7 +28,11 @@ public class HeaderComponent extends BasePage {
     }
 
     private Locator cartIcon() {
-        return getByLocator("div.wd-header-cart a[title='Cos de cumpărături']");
+        return getByLocator("[id='top-cart-btn']");
+    }
+
+    private Locator cartIconCount() {
+        return getByLocator("[id='top-cart-btn-qty']");
     }
 
     private Locator wishlistIconCount() {
@@ -73,7 +77,7 @@ public class HeaderComponent extends BasePage {
     }
 
     public String getWishlistCount() {
-        return getLocatorText(wishlistIconCount());
+        return getLocatorInnerText(wishlistIconCount());
     }
 
     public void clickMainIcon() {

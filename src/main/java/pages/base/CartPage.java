@@ -2,7 +2,7 @@ package pages.base;
 
 import browser.BrowserManager;
 
-import static support.Constants.CART_PATH;
+import static support.Constants.PATH_CART;
 
 public class CartPage extends BasePage{
 
@@ -11,10 +11,10 @@ public class CartPage extends BasePage{
     }
 
     public boolean isAtUrl() {
-        return super.isAtUrl(CART_PATH);
+        return super.isAtUrl(PATH_CART);
     }
 
     public void navigateToCartPage() {
-        navigate(CART_PATH);
+        navigate(PATH_CART);
     }
 }

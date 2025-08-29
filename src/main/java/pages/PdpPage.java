@@ -29,6 +29,6 @@ public class PdpPage extends BasePage {
     }
 
     public String getSecondCartCount() {
-        return getLocatorText(cartCount().nth(1)).split(" ")[0];
+        return getLocatorInnerText(cartCount().nth(1)).split(" ")[0];
     }
 }

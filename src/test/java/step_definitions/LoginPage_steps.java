@@ -8,6 +8,8 @@ import pages.LoginPage;
 import session.ScenarioSession;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static support.Constants.LOGIN_EMAIL;
+import static support.Constants.LOGIN_PASSWORD;
 
 public class LoginPage_steps {
 
@@ -24,14 +26,22 @@ public class LoginPage_steps {
         loginPage.navigateToLoginPage();
     }
 
-    @When("I type a user name {string}")
-    public void iTypeAUserName(String username) {
+    @When("the customer types a user name {string}")
+    public void typeAUserName(String username) {
         loginPage.typeUsername(username);
     }
 
-    @When("I type a password {string}")
-    public void iTypeAPassword(String password) {
+    @When("the customer types a password {string}")
+    public void typeAPassword(String password) {
         loginPage.typePassword(password);
+    }
+
+    @When("the customer types valid username and password")
+    public void typeValidUsernameAndPassword() {
+        loginPage.typeUsername(LOGIN_EMAIL);
+        loginPage.clickLoginBtn();
+        loginPage.typePassword(LOGIN_PASSWORD);
+
     }
 
     @When("I type a user name {string} and a password {string}")
@@ -40,19 +50,24 @@ public class LoginPage_steps {
         loginPage.typePassword(password);
     }
 
-    @And("I click on the login button")
-    public void iClickOnTheLoginButton() {
+    @And("the customer clicks login button")
+    public void clicksOnLoginButton() {
         loginPage.clickLoginBtn();
     }
 
     @Then("Login button is displayed")
-    public void loginPageIsDisplayed() {
+    public void loginButtonIsDisplayed() {
         assertThat(loginPage.isLoginBtnDisplayed()).isTrue();
     }
 
     @Then("Register link is displayed")
     public void registerButtonIsDisplayed() {
         assertThat(loginPage.isRegisterLinkDisplayed()).isTrue();
+    }
+
+    @Then("LoginPage is displayed")
+    public void loginPageIsDisplayed() {
+        assertThat(loginPage.isAtUrl()).as("Wrong URL").isTrue();
     }
 
     @Then("Error message with text {string} is displayed")
@@ -62,7 +77,7 @@ public class LoginPage_steps {
     }
 
     @When("the customer is logged in")
-    public void customerIsLoggedIn() {
+    public void customerIsLoggedIn() throws Exception {
         loginPage.logIn();
     }
 }
