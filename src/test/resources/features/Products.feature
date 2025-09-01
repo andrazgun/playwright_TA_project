@@ -1,3 +1,4 @@
+@regression
 Feature: Product browsing and cart management
   I want to browse products and manage my cart
   So that I can prepare my shopping
@@ -5,7 +6,6 @@ Feature: Product browsing and cart management
   Background:
     Given the customer opens Homepage
 
-  @smoke
   Scenario: Add product to cart
     When the customer adds first product to cart
     Then message "Produsul a fost adaugat cu succes in cos." is displayed
@@ -13,7 +13,8 @@ Feature: Product browsing and cart management
     When the customer clicks cart on Header
     Then Product with quantity "1" is displayed on Header
 
-    Scenario: Product category
+  @smoke
+  Scenario: Product category
       When the customer select product category "Ingrijire bebe si mama"
       And the customer select product category "Ingrijire bebelusi"
       And the customer select product category "Creme si produse de ingrijire bebe"

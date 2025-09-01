@@ -1,4 +1,4 @@
-@smoke
+@regression
 Feature: Search functionality
 
   Background:
@@ -13,6 +13,7 @@ Feature: Search functionality
     Then no search result list should be displayed
     And info message containing "nici un rezultat" is displayed
 
+  @smoke
   Scenario: Search with autocomplete suggestions
     When the customer types "scutec" in the search bar
     Then the system should display autocomplete suggestions containing "scutec"
