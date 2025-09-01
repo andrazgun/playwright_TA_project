@@ -68,4 +68,16 @@ public class PlpPage_steps {
                 replaceLineWithSpace(plpPage.getUrl()))
                 .as("Wrong url").containsIgnoringCase(arg0);
     }
+
+    @When("the customer sorts the products by {string}")
+    public void theCustomerSortsTheProductsBy(String arg0) {
+        plpPage.sortProductByCategory(arg0);
+    }
+
+    @Then("the products are sorted by price ascending")
+    public void theProductsAreSortedByPriceAscending() {
+        Assertions.assertThat(plpPage.getProductPrices())
+                .as("The products are not sorted ascending")
+                .isSorted();
+    }
 }

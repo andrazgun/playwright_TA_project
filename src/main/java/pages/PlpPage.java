@@ -3,6 +3,7 @@ package pages;
 import browser.BrowserManager;
 import com.microsoft.playwright.Locator;
 import pages.base.BasePage;
+import support.StringUtils;
 
 import java.util.List;
 
@@ -21,6 +22,10 @@ public class PlpPage extends BasePage {
         return getByLocator("[class='item-title text-center '] h4");
     }
 
+    private Locator productPrice() {
+        return getByLocator("[class='price-box'] [class='regular-price']");
+    }
+
     private Locator noResultsInfo() {
         return getByLocator("[class='no-results-info']");
     }
@@ -37,6 +42,10 @@ public class PlpPage extends BasePage {
         return getByLocator("div.move-to-wishlist-modal li[data-wishlist-name='Favorite']");
     }
 
+    private Locator sortButton() {
+        return getByRole("link", "Ordonează după:");
+    }
+
     private Locator successMessage() {
         return getByLocator("span.brighttheme-icon-success");
     }
@@ -51,6 +60,14 @@ public class PlpPage extends BasePage {
                 .stream()
                 .limit(listLimit)
                 .map(String::trim)
+                .toList();
+    }
+
+    public List<Double> getProductPrices() {
+        return productPrice()
+                .allInnerTexts()
+                .stream()
+                .map(StringUtils::priceStringToDouble)
                 .toList();
     }
 
@@ -74,5 +91,10 @@ public class PlpPage extends BasePage {
 
     public void selectCategoryByName(String name) {
         lhnComponent.clickProductCategoryByName(name);
+    }
+
+    public void sortProductByCategory(String category) {
+        sortButton().click();
+        getByRole("link", category).click();
     }
 }

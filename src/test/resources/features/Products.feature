@@ -15,4 +15,8 @@ Feature: Product browsing and cart management
 
     Scenario: Product category
       When the customer select product category "Ingrijire bebe si mama"
-      Then Product category page "Ingrijire bebe si mama" is displayed
+      And the customer select product category "Ingrijire bebelusi"
+      And the customer select product category "Creme si produse de ingrijire bebe"
+      Then Product category page "Creme si produse de ingrijire bebe" is displayed
+      When the customer sorts the products by "Pret crescător"
+      Then the products are sorted by price ascending
