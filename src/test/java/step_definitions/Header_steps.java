@@ -41,6 +41,16 @@ public class Header_steps {
         headerComponent.clickWishListIcon();
     }
 
+    @When("the customer clicks Useful Info on Header")
+    public void clicksUsefulInfoOnHeader() {
+        headerComponent.clickUsefulInfoButton();
+    }
+
+    @And("the customer clicks {string} from Useful Info dropdown")
+    public void theCustomerClicksFromUsefulInfo(String arg0) {
+        headerComponent.clickDropdownOption(arg0);
+    }
+
     @Then("the system should display autocomplete suggestions containing {string}")
     public void theSystemShouldDisplayAutocompleteSuggestions(String keyword) {
         List<String> suggestions = headerComponent.getAutocompleteSuggestions();

@@ -58,6 +58,14 @@ public class HeaderComponent extends BasePage {
         return getByLocator("[id='cart-popup']");
     }
 
+    private Locator usefulInfoButton() {
+        return getByRole("link", "Informatii Utile");
+    }
+
+    private Locator useFulInfoDropdownOption(String name) {
+        return getByRole("link", name).first();
+    }
+
     public void typeInSearchField(String text) {
         searchField().fill(text);
         searchField().press("Backspace");
@@ -81,6 +89,10 @@ public class HeaderComponent extends BasePage {
     public void searchFor(String text) {
         fillField(searchField(), text);
         searchBtn().click();
+    }
+
+    public void clickUsefulInfoButton() {
+        usefulInfoButton().click();
     }
 
     public List<String> getAutocompleteSuggestions() {
@@ -109,4 +121,9 @@ public class HeaderComponent extends BasePage {
         return getLocatorInnerText(productQuantity());
     }
 
+    public void clickDropdownOption(String arg0) {
+        Locator locator = useFulInfoDropdownOption(arg0);
+        waitForLocatorByState(locator, "visible");
+        locator.click();
+    }
 }

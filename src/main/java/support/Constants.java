@@ -11,6 +11,7 @@ public class Constants {
     public static final String PATH_SHOP = "magazin/";
     public static final String PATH_CART = "cos/";
     public static final String PATH_WISHLIST = "dashboard/favorite";
+    public static final String PATH_HOW_TO = "cum-comand";
 
     public static final String LOGIN_EMAIL = "agtest1@yopmail.com";
     public static final String LOGIN_PASSWORD = "R7m!a2_D@";
