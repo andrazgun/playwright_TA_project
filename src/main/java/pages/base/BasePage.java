@@ -1,7 +1,10 @@
 package pages.base;
 
 import browser.BrowserManager;
-import com.microsoft.playwright.*;
+import com.microsoft.playwright.Locator;
+import com.microsoft.playwright.Page;
+import com.microsoft.playwright.PlaywrightException;
+import com.microsoft.playwright.TimeoutError;
 import com.microsoft.playwright.options.AriaRole;
 import com.microsoft.playwright.options.WaitForSelectorState;
 import com.microsoft.playwright.options.WaitUntilState;
@@ -9,7 +12,6 @@ import org.slf4j.Logger;
 import session.ScenarioSession;
 import support.LogUtil;
 
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -100,42 +102,6 @@ public class BasePage {
 
         locator.waitFor(new Locator.WaitForOptions().setState(waitState));
         logger.info("Loader [{}] successfully reached state [{}].", locator, waitState);
-    }
-
-    public void clickUntilRedirect(Locator locator, String redirectApiUrl, String expectedRedirectJson) {
-        logger.info("Starting the login process. Clicking button: {}", locator);
-
-        final int maxRetries = 5;
-        int retryCount = 0;
-
-        while (retryCount < maxRetries) {
-            logger.info("Attempting to click the login button...");
-
-            // Wait for the response and perform the click action simultaneously to avoid a race condition.
-            // The Playwright API is designed to do this as a single atomic operation.
-            // This is the action that triggers the response listener.
-            Response response = getBrowserManager().getPage().waitForResponse(responseListener -> {
-                // Check if the response URL matches the expected redirect API URL.
-                return responseListener.url().contains(redirectApiUrl);
-            }, locator::click);
-
-            // Separate method call to check the response body.
-            if (isResponseSuccessful(response, expectedRedirectJson)) {
-                logger.info("SUCCESS: Correct response body received. The login button is working as expected.");
-                return; // Exit the loop on success.
-            } else {
-                String actualBody = new String(response.body(), StandardCharsets.UTF_8);
-                logger.error("FAIL: Unexpected response body received. Retrying. Expected: {} ", expectedRedirectJson + ", Actual: {} " + actualBody);
-                retryCount++;
-                // The loop will continue, clicking the button again.
-            }
-        }
-    }
-
-    private boolean isResponseSuccessful(Response response, String expectedRedirectJson) {
-        String responseBody = new String(response.body(), StandardCharsets.UTF_8);
-        logger.info("Response body [{}]", responseBody);
-        return responseBody.equals(expectedRedirectJson);
     }
 
     public static String buildUrl(String path) {

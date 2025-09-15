@@ -1,7 +1,9 @@
 # Playwright Java Test Automation Project
 
 ### Description
-TBU
+
+The main scope is the framework structure rather than actual testing, therefore the number of tests in the feature files
+is small.
 
 ---
 
@@ -15,7 +17,8 @@ TBU
 - **[Page Factory](https://www.lambdatest.com/blog/page-factory-in-selenium/)**: A design pattern to initialize and manage web elements.
 
 ### How To:
-- Browsers supported: Firefox, Chromium and Webkit.
+
+- Browsers supported: Firefox and Chromium.
 Execute tests in parallel:
 1. Set in config.properties the desired browser (i.e. firefox, chromium, webkit) and the thread.count (<=3 ideally).
 2. Set in RunCucumberTest the desired tags (i.e. @regression, @smoke, @yourCustomTag)
@@ -33,9 +36,13 @@ The framework is designed for integration with Jenkins and Github Actions:
 Jenkins Prerequisite: Jenkins installed locally, Cucumber reports plugin installed, admin credentials.
 Create a build job with parameters to run tests and generate a report using Execute Windows batch command:
 mvn clean test -Dcucumber.filter.tags="(@%TAG% and (not @ignore))" -Ddataproviderthreadcount=%THREAD_COUNT% -DBROWSER=%BROWSER% -Dbranch.name=${BRANCH_NAME}
-GitHub Actions:
-Each push or PR to master branch on GitHub will trigger a job executing the @smoke tests suite, on 2 threads, using Chromium.
-After executing the test suite, the Cucumber report will be published to GitHub Pages.
+
+GitHub Actions workflows:
+
+1. Check for Undefined Steps --> checks for undefined Cucumber steps whenever code is pushed or a pull request is
+   opened.
+2. Run Smoke Tests --> runs smoke tests with Cucumber + Playwright and publishes the generated HTML report to GitHub
+   Pages.
 
 ### Disclaimer:
 This project is developed for demonstration and educational purposes only.

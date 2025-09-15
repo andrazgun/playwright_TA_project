@@ -32,9 +32,6 @@ public class LoginPage extends BasePage {
         return getByRole("link", "Înregistrare");
     }
 
-    String redirectApiUrl = "https://comenzi.bebetei.ro/users/login/dologin";
-    String expectedRedirectJson = "{\"redirect-to\":\"https:\\/\\/comenzi.bebetei.ro\\/dashboard\"}";
-
     public void typeUsername(String username) {
         usernameField().fill(username);
         logger.info("Type username, {}", username);
@@ -76,7 +73,7 @@ public class LoginPage extends BasePage {
         clickLoginBtn();
         waitForLoaderToDisappear();
         typePassword(LOGIN_PASSWORD);
-        clickUntilRedirect(loginButton(), redirectApiUrl, expectedRedirectJson);
+        clickLoginBtn();
         waitForLoaderToDisappear();
         waitForPageLoad();
     }
