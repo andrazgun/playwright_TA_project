@@ -18,5 +18,4 @@ public class ShopPage extends BasePage {
     public void navigateToShopPage() {
         navigate(PATH_SHOP);
     }
-
 }

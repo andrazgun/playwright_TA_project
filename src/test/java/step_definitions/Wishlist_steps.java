@@ -27,7 +27,6 @@ public class Wishlist_steps {
         Assertions.assertThat(actualCount).isGreaterThanOrEqualTo(expectedCount);
     }
 
-
     @Then("wishlist named {string} is displayed")
     public void wishlistNamedIsDisplayed(String arg0) {
         Assertions.assertThat(wishlistPage.getWishlistByName(arg0)).isNotEmpty();

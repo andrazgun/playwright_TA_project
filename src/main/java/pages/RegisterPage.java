@@ -75,7 +75,6 @@ public class RegisterPage extends BasePage {
 
     public boolean registerBtnIsDisplayed() {
         return registerBtn().isVisible();
-
     }
 
     public boolean isLoginLinkDisplayed() {

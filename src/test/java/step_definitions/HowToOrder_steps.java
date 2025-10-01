@@ -12,7 +12,6 @@ public class HowToOrder_steps {
         this.howToOrderPage = howToOrderPage;
     }
 
-
     @Then("HowToOrder page is displayed")
     public void howtoOrderPageIsDisplayed() {
         assertThat(howToOrderPage.isAtUrl()).as("Wrong URL").isTrue();

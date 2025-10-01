@@ -41,7 +41,6 @@ public class LoginPage_steps {
         loginPage.typeUsername(LOGIN_EMAIL);
         loginPage.clickLoginBtn();
         loginPage.typePassword(LOGIN_PASSWORD);
-
     }
 
     @When("I type a user name {string} and a password {string}")
