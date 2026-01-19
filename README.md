@@ -29,7 +29,7 @@ Execute tests individually:
 
 Reports:
 The report is generated if tests are executed from RunCucumberTest class
-The view the test report, go to target\cucumber-reports.html, right click > Open In > Browser > Default.
+To view the test report, go to target\cucumber-reports.html, right click > Open In > Browser > Default.
 
 CI/CD:
 The framework is designed for integration with Jenkins and Github Actions:
